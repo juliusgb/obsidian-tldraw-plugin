@@ -1,7 +1,7 @@
 {
-	"name": "obsidian-sample-plugin",
+	"name": "obsidian-tldraw-plugin",
 	"version": "1.0.0",
-	"description": "This is a sample plugin for Obsidian (https://obsidian.md)",
+	"description": "An Obsidian plugin to edit and view Excalidraw drawings.",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
