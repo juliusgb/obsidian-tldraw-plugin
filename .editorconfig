@@ -3,8 +3,12 @@ root = true
 
 [*]
 charset = utf-8
+# Use Unix line endings
 end_of_line = lf
-insert_final_newline = true
 indent_style = tab
-indent_size = 4
-tab_width = 4
+tab_width = 2
+indent_size = tab_width
+# No whitespace at the end of line
+trim_trailing_whitespace = true
+# A file must end with an empty line - this is good for version control systems
+insert_final_newline = true
