@@ -1,4 +1,19 @@
-import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
+import {
+	App,
+	Editor,
+	MarkdownView,
+	Modal,
+	Notice,
+	Plugin,
+	PluginSettingTab,
+	Setting,
+	addIcon
+} from 'obsidian';
+
+import {
+  ICON_NAME,
+	TLDRAW_ICON
+} from "./constants";
 
 // Remember to rename these classes and interfaces!
 
@@ -14,10 +29,11 @@ export default class MyPlugin extends Plugin {
 	settings: MyPluginSettings;
 
 	async onload() {
+		addIcon(ICON_NAME, TLDRAW_ICON);
 		await this.loadSettings();
 
 		// This creates an icon in the left ribbon.
-		const ribbonIconEl = this.addRibbonIcon('dice', 'Tldraw Plugin', (evt: MouseEvent) => {
+		const ribbonIconEl = this.addRibbonIcon(ICON_NAME, 'Tldraw Plugin', (evt: MouseEvent) => {
 			// Called when the user clicks the icon.
 			new Notice('Tldraw is here!');
 		});
