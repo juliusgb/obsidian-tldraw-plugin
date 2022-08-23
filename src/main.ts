@@ -15,6 +15,11 @@ import {
 	TLDRAW_ICON
 } from "./constants";
 
+import {
+	MyPluginSettings,
+	DEFAULT_SETTINGS
+} from './settings';
+
 // Remember to rename these classes and interfaces!
 
 interface MyPluginSettings {
