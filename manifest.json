@@ -1,6 +1,6 @@
 {
 	"id": "obsidian-tldraw-plugin",
-	"name": "Tldraw",
+	"name": "TLdraw",
 	"version": "0.0.1",
 	"minAppVersion": "0.15.0",
 	"description": "An Obsidian plugin to edit and view Excalidraw drawings.",
