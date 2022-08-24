@@ -1,0 +1,4 @@
+# Controls how files' line-endings are checked in and out of this repo:
+# - Every text file is checked out with LF line endings in the working directory (eol=lf)
+# - Every potentially introduced CRLF in a text file will be converted back to LF on staging (* text=auto)
+* text=auto eol=lf
