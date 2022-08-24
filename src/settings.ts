@@ -33,20 +33,8 @@ export class TldrawSettingTab extends PluginSettingTab {
 		containerEl.createEl('h3', { text: 'General Settings'	});
 
 		new Setting(containerEl)
-			.setName('Setting #1')
-			.setDesc('It\'s a secret')
-			.addText(text => text
-				.setPlaceholder('Enter your secret')
-				.setValue(this.plugin.settings.mySetting)
-				.onChange(async (value) => {
-					console.log('Secret: ' + value);
-					this.plugin.settings.mySetting = value;
-					await this.plugin.saveSettings();
-				}));
-
-		new Setting(containerEl)
 				.setName("Tldraw folder")
-				.setDesc("Where to save Tldraw drawings. When not set, drawing saved to Vault root.")
+				.setDesc("Where to save Tldraw drawings. Default location is in the Vault root.")
 				.addText(text => text
 					.setPlaceholder('tldraw')
 					.setValue(this.plugin.settings.folder)
