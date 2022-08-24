@@ -1,6 +1,6 @@
 :warning:
 
-Development has just started. Definitely not stable.
+Development has just started. Definitely not stable. See <https://github.com/tldraw/tldraw/issues/919>
 
 # Obsidian Tldraw Plugin
 
