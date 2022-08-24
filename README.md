@@ -2,7 +2,7 @@
 
 # Obsidian Tldraw Plugin
 
-This plugin integrates [Tldraw](https://github.com/tldraw/tldraw) in Obsidian.
+This plugin integrates [Tldraw](https://github.com/tldraw/tldraw) in [Obsidian](https://obsidian.md).
 
 ## Installation
 
