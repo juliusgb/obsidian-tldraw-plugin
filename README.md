@@ -1,6 +1,4 @@
-:zap:
-
-Development has just started. Definitely not stable. See <https://github.com/tldraw/tldraw/issues/919>
+:zap: Development has just started. Definitely not stable. See <https://github.com/tldraw/tldraw/issues/919> :zap:
 
 # Obsidian Tldraw Plugin
 
