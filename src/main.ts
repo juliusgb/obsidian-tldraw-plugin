@@ -31,7 +31,7 @@ export default class TldrawPlugin extends Plugin {
 		await this.loadSettings();
 
 		// This creates an icon in the left ribbon.
-		const ribbonIconEl = this.addRibbonIcon(ICON_NAME, 'Tldraw Plugin', (evt: MouseEvent) => {
+		const ribbonIconEl = this.addRibbonIcon('dice', 'Tldraw Plugin', (evt: MouseEvent) => {
 			// Called when the user clicks the icon.
 			new Notice('Tldraw is here!');
 		});
