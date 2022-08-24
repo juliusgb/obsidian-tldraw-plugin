@@ -33,7 +33,7 @@ export default class TldrawPlugin extends Plugin {
 		// This creates an icon in the left ribbon.
 		const ribbonIconEl = this.addRibbonIcon(TLDRAW_ICON, 'Tldraw Plugin', (evt: MouseEvent) => {
 			// Called when the user clicks the icon.
-			new Notice('Tldraw is here!');
+			new Notice('TLdraw clicked!');
 		});
 		// Perform additional things with the ribbon
 		ribbonIconEl.addClass('my-plugin-ribbon-class');
