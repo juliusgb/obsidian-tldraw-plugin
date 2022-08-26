@@ -12,7 +12,8 @@ import {
 
 import {
   ICON_NAME,
-	TLDRAW_ICON
+	TLDRAW_ICON,
+	VIEW_TYPE_TLDRAW
 } from "./constants";
 
 import {
@@ -20,6 +21,7 @@ import {
 	DEFAULT_SETTINGS,
 	TldrawSettingTab
 } from './settings';
+import TLdrawView from './view';
 
 // Remember to rename these classes and interfaces!
 
@@ -28,13 +30,22 @@ export default class TldrawPlugin extends Plugin {
 
 	async onload() {
 		addIcon(ICON_NAME, TLDRAW_ICON);
+
+		// register custom view with the plugin
+		this.registerView(
+			VIEW_TYPE_TLDRAW,
+			(leaf) => new TLdrawView(leaf)
+			);
+
 		await this.loadSettings();
 
 		// This creates an icon in the left ribbon.
-		const ribbonIconEl = this.addRibbonIcon(TLDRAW_ICON, 'Tldraw Plugin', (evt: MouseEvent) => {
+		const ribbonIconEl = this.addRibbonIcon(TLDRAW_ICON, 'New Tldraw drawing', (evt: MouseEvent) => {
 			// Called when the user clicks the icon.
 			new Notice('TLdraw clicked!');
+			this.activateView();
 		});
+
 		// Perform additional things with the ribbon
 		ribbonIconEl.addClass('my-plugin-ribbon-class');
 
@@ -93,7 +104,8 @@ export default class TldrawPlugin extends Plugin {
 	}
 
 	onunload() {
-
+		// ensure to clean up the view whenever the plugin is disabled
+		this.app.workspace.detachLeavesOfType(VIEW_TYPE_TLDRAW);
 	}
 
 	async loadSettings() {
@@ -102,6 +114,26 @@ export default class TldrawPlugin extends Plugin {
 
 	async saveSettings() {
 		await this.saveData(this.settings);
+	}
+
+	/**
+	 * Allows user to activate the TLdraw view.
+	 * How?
+	 * 	1. Detach all leaves with the custom view.
+	 * 	2. Add the custom view on the right leaf.
+	 * 	3. Reveal the leaf that contains the custom view.
+	 */
+	async activateView() {
+		this.app.workspace.detachLeavesOfType(VIEW_TYPE_TLDRAW);
+
+		await this.app.workspace.getRightLeaf(false).setViewState({
+			type: VIEW_TYPE_TLDRAW,
+			active: true
+		});
+
+		this.app.workspace.revealLeaf(
+			this.app.workspace.getLeavesOfType(VIEW_TYPE_TLDRAW)[0]
+		);
 	}
 }
 
