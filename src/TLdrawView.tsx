@@ -2,7 +2,6 @@ import {TextFileView, WorkspaceLeaf} from "obsidian";
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { ReactComponent1 } from "./ReactComponent1";
 import TLdrawObsApp from "./TLdrawObsApp";
 import { AppContext } from "./context";
 
@@ -11,7 +10,7 @@ import {
 } from "./constants"
 import {createRoot} from "react-dom/client";
 
-export default class TLdrawEmbedObsView extends TextFileView {
+export default class TLdrawView extends TextFileView {
 	constructor(leaf: WorkspaceLeaf) {
 		super(leaf);
 	}
@@ -64,7 +63,6 @@ export default class TLdrawEmbedObsView extends TextFileView {
 
 		mountableReactRoot.render(
 			<AppContext.Provider value={this.app}>
-				<ReactComponent1 />
 				<TLdrawObsApp />
 			</AppContext.Provider>
 		);
