@@ -21,7 +21,7 @@ export default function TLdrawObsApp(props) {
 
   return (
 		<div className="tldrawApp" ref={rTLDrawApp}>
-			<h1> Tldraw Example</h1>
+			<h1>Tldraw Example</h1>
 			<div className="tldraw-wrapper">
 				<Tldraw id={id} />
 			</div>
