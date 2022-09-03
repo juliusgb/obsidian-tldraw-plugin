@@ -21,5 +21,11 @@ Current features:
 
 - Adds a ribbon icon, which shows a pop-up `TLdraw clicked` when clicked.
 - Adds a plugin setting tab to the settings page.
+- Clicking a file with extension `.tldraw` opens up Tldraw.
 
-See [TODO list](TODO.md) for upcoming features.
+
+## Discussion and Feedback
+
+I appreciate any feedback that you're able to give.
+Please use the [GitHub issue tracker](https://github.com/juliusgb/obsidian-tldraw-plugin/issues/new) to report bugs, request features,
+or suggest improvements, or message me over on Discord (juliusg#0919).
