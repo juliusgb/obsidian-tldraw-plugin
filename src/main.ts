@@ -7,13 +7,13 @@ import {
 	Plugin,
 	PluginSettingTab,
 	Setting,
-	addIcon
+	addIcon, WorkspaceLeaf
 } from 'obsidian';
 
 import {
-  ICON_NAME,
+	ICON_NAME,
 	TLDRAW_ICON,
-	VIEW_TYPE_TLDRAW
+	VIEW_TYPE_TLDRAW, VIEW_TYPE_TLDRAW_EMBED
 } from "./constants";
 
 import {
@@ -21,7 +21,8 @@ import {
 	DEFAULT_SETTINGS,
 	TldrawSettingTab
 } from './settings';
-import TLdrawView from './view';
+
+import TLdrawEmbedObsView from "./TLdrawEmbedObsView";
 
 // Remember to rename these classes and interfaces!
 
@@ -31,13 +32,16 @@ export default class TldrawPlugin extends Plugin {
 	async onload() {
 		addIcon(ICON_NAME, TLDRAW_ICON);
 
+		await this.loadSettings();
+
 		// register custom view with the plugin
 		this.registerView(
-			VIEW_TYPE_TLDRAW,
-			(leaf) => new TLdrawView(leaf)
-			);
+			VIEW_TYPE_TLDRAW_EMBED,
+			(leaf: WorkspaceLeaf) => new TLdrawEmbedObsView(leaf)
+		);
 
-		await this.loadSettings();
+		// Register the extensions you want the view to handle.
+		this.registerExtensions(["tldraw"], VIEW_TYPE_TLDRAW_EMBED);
 
 		// This creates an icon in the left ribbon.
 		const ribbonIconEl = this.addRibbonIcon(TLDRAW_ICON, 'New Tldraw drawing', (evt: MouseEvent) => {
