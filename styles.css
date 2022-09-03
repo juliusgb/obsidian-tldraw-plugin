@@ -6,3 +6,20 @@ available in the app when your plugin is enabled.
 If your plugin does not need CSS, delete this file.
 
 */
+
+html,
+* {
+	box-sizing: border-box;
+}
+
+.tldrawApp {
+	font-family: sans-serif;
+	text-align: center;
+}
+
+.tldraw-wrapper {
+	height: 800px;
+	margin: 50px;
+	position: relative;
+	overflow: hidden;
+}

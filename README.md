@@ -10,6 +10,11 @@ To install, clone or unzip into your `.obsidian/plugins/` directory.
 
 Since development has just started, this plugin is not yet registered as a community plugin for downloading within Obisidian.
 
+## Test & Run
+
+- In your Obsidian Vault, save any file with extension `.tldraw`, such as `test.tldraw`.
+- Click on it. That will activate the `obsidian-tldraw-plugin`.
+
 ## Features
 
 Current features:

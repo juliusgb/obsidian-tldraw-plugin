@@ -11,8 +11,20 @@
 	"keywords": [],
 	"author": "",
 	"license": "MIT",
+	"dependencies": {
+		"@tldraw/tldraw": "1.18.0",
+		"eslint": "8.22.0",
+		"mobx": "6.6.0",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"@types/react": "18.0.14",
+		"@types/react-dom": "18.0.5",
+		"react-scripts": "5.0.1"
+	},
 	"devDependencies": {
 		"@types/node": "^16.11.6",
+		"@types/react": "18.0.14",
+		"@types/react-dom": "18.0.5",
 		"@typescript-eslint/eslint-plugin": "5.29.0",
 		"@typescript-eslint/parser": "5.29.0",
 		"builtin-modules": "3.3.0",
