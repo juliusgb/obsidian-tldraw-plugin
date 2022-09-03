@@ -23,6 +23,7 @@ Current features:
 - Adds a plugin setting tab to the settings page.
 - Clicking a file with extension `.tldraw` opens up Tldraw.
 
+[This GitHub Project](https://github.com/users/juliusgb/projects/3/views/1) contains most up-to-date plans.
 
 ## Discussion and Feedback
 
