@@ -11,7 +11,7 @@ import {
 } from "./constants"
 import {createRoot} from "react-dom/client";
 
-export default class TLdrawEmbedObsView extends TextFileView {
+export default class TLdrawView extends TextFileView {
 	constructor(leaf: WorkspaceLeaf) {
 		super(leaf);
 	}

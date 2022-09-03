@@ -1,7 +1,7 @@
 import { ItemView, WorkspaceLeaf } from "obsidian";
 import { VIEW_TYPE_TLDRAW } from "./constants";
 
-export default class TLdrawView extends ItemView {
+export default class TLdrawViewOld extends ItemView {
 	constructor(leaf: WorkspaceLeaf) {
 		super(leaf);
 	}

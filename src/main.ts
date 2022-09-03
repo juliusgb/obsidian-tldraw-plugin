@@ -22,7 +22,7 @@ import {
 	TldrawSettingTab
 } from './settings';
 
-import TLdrawEmbedObsView from "./TLdrawEmbedObsView";
+import TLdrawView from "./TLdrawView";
 
 // Remember to rename these classes and interfaces!
 
@@ -37,7 +37,7 @@ export default class TldrawPlugin extends Plugin {
 		// register custom view with the plugin
 		this.registerView(
 			VIEW_TYPE_TLDRAW_EMBED,
-			(leaf: WorkspaceLeaf) => new TLdrawEmbedObsView(leaf)
+			(leaf: WorkspaceLeaf) => new TLdrawView(leaf)
 		);
 
 		// Register the extensions you want the view to handle.
