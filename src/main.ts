@@ -7,10 +7,12 @@ import {
 	Plugin,
 	PluginSettingTab,
 	Setting,
-	addIcon, WorkspaceLeaf
+	addIcon, WorkspaceLeaf, TFile, normalizePath
 } from 'obsidian';
 
 import {
+	BLANK_DRAWING,
+	CTRL_OR_CMD, DARK_BLANK_DRAWING,
 	ICON_NAME,
 	TLDRAW_ICON,
 	VIEW_TYPE_TLDRAW, VIEW_TYPE_TLDRAW_EMBED
@@ -23,8 +25,9 @@ import {
 } from './settings';
 
 import TLdrawView from "./TLdrawView";
-
-// Remember to rename these classes and interfaces!
+import {checkAndCreateFolder, getDrawingFilename, getNewUniqueFilepath} from "./utils/FileUtils";
+import {getNewOrAdjacentLeaf, isObsidianThemeDark} from "./utils/ObsidianUtils";
+import {debug} from "./utils/Utils";
 
 export default class TldrawPlugin extends Plugin {
 	settings: TldrawSettings;
@@ -39,7 +42,7 @@ export default class TldrawPlugin extends Plugin {
 		// register custom view with the plugin
 		this.registerView(
 			VIEW_TYPE_TLDRAW_EMBED,
-			(leaf: WorkspaceLeaf) => new TLdrawView(leaf)
+			(leaf: WorkspaceLeaf) => new TLdrawView(leaf, this)
 		);
 
 		// Register the extensions you want the view to handle.
@@ -64,17 +67,23 @@ export default class TldrawPlugin extends Plugin {
 	}
 
 	private registerCommands() {
+		debug({where:"TLdrawPlugin.registerCommands",})
 		// TODO: handle i18n (internationalization and localization)
 
 		// This creates an icon in the left ribbon.
 		this.addRibbonIcon(TLDRAW_ICON, 'New Tldraw drawing', (evt: MouseEvent) => {
 			// Called when the user clicks the icon.
 			new Notice('TLdraw clicked!');
-			this.activateView();
+			this.createAndOpenDrawing(
+				getDrawingFilename(this.settings),
+				evt[CTRL_OR_CMD]?"new-pane":"active-pane", // TODO: check if really needed
+			);
 		});
 	}
 
 	private registerEventListeners() {
+		debug({where:"TLdrawPlugin.registerCommands",});
+
 		// If the plugin hooks up any global DOM events (on parts of the app that doesn't belong to this plugin)
 		// Using this function will automatically remove the event listener when this plugin is disabled.
 		this.registerDomEvent(document, 'click', (evt: MouseEvent) => {
@@ -91,21 +100,88 @@ export default class TldrawPlugin extends Plugin {
 		statusBarItemEl.setText('in Tldraw');
 	}
 
-	/**
-	 * Allows user to activate the TLdraw view.
-	 */
-	async activateView() {
-		// TODO:
+	private async createAndOpenDrawing(
+		filename: string,
+		location: "active-pane"|"new-pane"|"popout-window",
+		foldername?: string,
+		initialData?: string): Promise<string> {
+		debug({where:"TLdrawPlugin.createAndOpenDrawing",})
 
-		this.app.workspace.detachLeavesOfType(VIEW_TYPE_TLDRAW);
 
-		await this.app.workspace.getRightLeaf(false).setViewState({
-			type: VIEW_TYPE_TLDRAW,
-			active: true
-		});
+		const file = await this.createDrawing(filename, foldername, initialData);
+		this.openDrawing(file, location, true);
 
-		this.app.workspace.revealLeaf(
-			this.app.workspace.getLeavesOfType(VIEW_TYPE_TLDRAW)[0]
+		return file.path;
+
+	}
+
+	private async createDrawing(
+		filename: string,
+		foldername?: string,
+		initData?: string): Promise<TFile> {
+
+		debug({where:"TLdrawPlugin.createDrawing",})
+
+		const folderpath = normalizePath(foldername ? foldername : this.settings.folder);
+
+		await checkAndCreateFolder(folderpath); //create folder if it does not exist
+
+		const fname = getNewUniqueFilepath(this.app.vault, filename, folderpath);
+
+		const file =
+			await this.app.vault.create(
+				fname,
+				initData ?? (await this.getBlankDrawing()));
+
+		// TODO: wait for metadata cache
+
+		return file;
+	}
+
+	public async getBlankDrawing(): Promise<string> {
+		debug({where:"TLdrawPlugin.getBlankDrawing",})
+		// TODO: add template stuff
+
+		const blankDrawing = this.settings.matchTheme && isObsidianThemeDark()
+			? DARK_BLANK_DRAWING
+			: BLANK_DRAWING;
+
+		if (this.settings.compatibilityMode) {
+			return blankDrawing;
+		}
+		else {
+			// TODO: compressed json
+
+			return blankDrawing;
+		}
+	}
+
+	private openDrawing(
+		drawingFile: TFile,
+		location: "active-pane" | "new-pane" | "popout-window",
+		active: boolean,
+		subpath?: string) {
+		debug({where:"TLdrawPlugin.openDrawing", drawingFile:drawingFile, location:location, active:active, subpath:subpath})
+
+		let leaf: WorkspaceLeaf;
+		if(location === "popout-window") {
+			//@ts-ignore
+			leaf = app.workspace.openPopoutLeaf();
+		}
+		else {
+			leaf = this.app.workspace.getLeaf(false);
+			if ((leaf.view.getViewType() !== 'empty') && (location === "new-pane")) {
+				leaf = getNewOrAdjacentLeaf(this, leaf)
+			}
+		}
+
+		leaf.openFile(
+			drawingFile,
+			!subpath || subpath === ""
+				? {active}
+				: { active, eState: { subpath } }
 		);
 	}
+
+
 }

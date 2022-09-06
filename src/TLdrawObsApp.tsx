@@ -4,11 +4,9 @@ import { Tldraw, TldrawApp } from "@tldraw/tldraw";
 
 import { useObsidianApp } from "./hooks";
 
-export default function TLdrawObsApp(props) {
+export default function TLdrawObsApp() {
 	const { vault } = useObsidianApp();
 	console.log("vault name: " + vault.getName());
-
-	console.log(props.initialData);
 
   const rTLDrawApp = React.useRef<TldrawApp>();
 

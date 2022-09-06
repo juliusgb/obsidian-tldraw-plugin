@@ -1,0 +1,34 @@
+{
+	"shapes": [
+		{
+			"id": "f42d396a-b496-4d04-339d-fb3d7c5302c7",
+			"type": "rectangle",
+			"name": "Rectangle",
+			"parentId": "currentPageId",
+			"childIndex": 1,
+			"point": [
+				611.2,
+				317
+			],
+			"size": [
+				45,
+				51.4
+			],
+			"rotation": 0,
+			"style": {
+				"color": "black",
+				"size": "small",
+				"isFilled": false,
+				"dash": "draw",
+				"scale": 1
+			},
+			"label": "",
+			"labelPoint": [
+				0.5,
+				0.5
+			]
+		}
+	],
+	"bindings": [],
+	"assets": []
+}
