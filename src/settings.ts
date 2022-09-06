@@ -8,12 +8,22 @@ import type TldrawPlugin from "./main";
 
 export interface TldrawSettings {
 	mySetting: string;
-	folder: string
+	folder: string;
+	drawingFilenamePrefix: string;
+	drawingFilenameDateTime: string;
+	compatibilityMode: boolean;
+	useTldrawExtension: boolean;
+	matchTheme: boolean
 }
 
 export const DEFAULT_SETTINGS: TldrawSettings = {
 	mySetting: 'default',
-	folder: 'tldraw'
+	folder: 'Tldraw',
+	drawingFilenamePrefix: "TLDrawing ",
+	drawingFilenameDateTime: "YYYY-MM-DD HH.mm.ss",
+	compatibilityMode: true,
+	useTldrawExtension: false, // TODO: until processing diagram as markdown is sorted
+	matchTheme: false
 };
 
 
