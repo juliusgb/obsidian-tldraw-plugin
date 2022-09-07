@@ -4,28 +4,29 @@
 
 This plugin integrates [Tldraw](https://github.com/tldraw/tldraw) in [Obsidian](https://obsidian.md).
 
-## Installation
-
-To install:
-- clone or unzip into your `.obsidian/plugins/` directory.
-- in the terminal, change to `.obsidian/plugins/plugins/obsidian-tldraw-plugin`
-- run `npm install`
-- run `npm run dev`
+## Setup
 
 Since development has just started, this plugin is not yet registered as a community plugin for downloading within Obisidian.
 
+Prepare the required files:
+
+- Naviate to the `releases` tab <https://github.com/juliusgb/obsidian-tldraw-plugin/releases>
+- Download the `obsidian-tldraw-plugin-<version-number>`
+- Open your preferred zip tool, navigate to `obsidian-tldraw-plugin` and extract it into
+	`/path/to/ObsidianVault/plugins/`
+- The directory structure should look like this: `.obsidian/plugins/plugins/obsidian-tldraw-plugin`
+
 ## Test & Run
 
-- In your Obsidian Vault, save any file with extension `.tldraw`, such as `test.tldraw`.
-- Click on it. That will activate the `obsidian-tldraw-plugin`.
+- In your Obsidian Vault, on the ribbon, hover over the `dice` icon. It displays `New Tldrawing`
+- Click on it. That will create a file with extension `.tldraw` and will activate the `obsidian-tldraw-plugin`.
 
 ## Features
 
 Current features:
 
-- Adds a ribbon icon, which shows a pop-up `TLdraw clicked` when clicked.
-- Adds a plugin setting tab to the settings page.
-- Clicking a file with extension `.tldraw` opens up Tldraw.
+- Ribbon icon, which when clicked, creates a file with extension `.tldraw` opens up Tldraw.
+- Any file with extension `.tldraw` opens up Tldraw.
 
 [This GitHub Project](https://github.com/users/juliusgb/projects/3/views/1) contains most up-to-date plans.
 
