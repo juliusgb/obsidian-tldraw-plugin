@@ -34,8 +34,8 @@ export default class TLdrawView extends TextFileView {
 	getViewData() {
 		console.log("view.getViewData()");
 
-		// TODO:
-		// return what should be saved to disk
+		// TODO: return what should be saved to disk
+		return "";
 	}
 
 	// updates the view whenever Obsidian reads new data from a file.
@@ -75,8 +75,6 @@ export default class TLdrawView extends TextFileView {
 			}
 			// use tldrawDataJson
 			await this.loadDrawing(true);
-
-			this.isLoaded = true;
 
 		});
 	}
