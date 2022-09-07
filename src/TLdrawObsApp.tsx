@@ -5,20 +5,19 @@ import { Tldraw, TldrawApp } from "@tldraw/tldraw";
 import { useObsidianApp } from "./hooks";
 
 export default function TLdrawObsApp() {
+	// @ts-ignore
 	const { vault } = useObsidianApp();
 	console.log("vault name: " + vault.getName());
 
-  const rTLDrawApp = React.useRef<TldrawApp>();
+  // const rTLDrawApp = React.useRef<TldrawApp>();
 
   const id = "tldraw-example"; // [1]
 
-	// TODO: figure out how to use
-  const handleMount = React.useCallback((tldrawApp: TldrawApp) => {
-    rTLDrawApp.current = tldrawApp; // [2]
-  }, []);
+	// TODO: figure out how to use the handleMount
 
-  return (
-		<div className="tldrawApp" ref={rTLDrawApp}>
+	// @ts-ignore
+	return (
+		<div className="tldrawApp" >
 			<h1>Tldraw Example</h1>
 			<div className="tldraw-wrapper">
 				<Tldraw id={id} />

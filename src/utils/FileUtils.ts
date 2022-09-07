@@ -54,6 +54,7 @@ export function getNewUniqueFilepath(
 
 	let fname = normalizePath(`${folderpath}/${filename}`);
 
+	// @ts-ignore
 	let file: TAbstractFile = vault.getAbstractFileByPath(fname);
 
 	let i = 0;
@@ -70,6 +71,7 @@ export function getNewUniqueFilepath(
 			)}_${i}${extension}`,
 		);
 		i++;
+		// @ts-ignore
 		file = vault.getAbstractFileByPath(fname);
 	}
 

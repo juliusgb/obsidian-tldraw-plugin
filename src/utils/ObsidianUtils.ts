@@ -56,12 +56,16 @@ export const getNewOrAdjacentLeaf = (
 				) return;
 				mainLeaf = l;
 			})
+
+		// @ts-ignore
 		return mainLeaf;
 	}
 
 	//1
+	// @ts-ignore
 	if(plugin.settings.openInMainWorkspace || ["main","left","right"].contains(leafLoc)) {
 		//1.1
+		// @ts-ignore
 		if(!plugin.settings.openInAdjacentPane) {
 			if(leafLoc === "main") {
 				return app.workspace.createLeafBySplit(leaf);
@@ -78,6 +82,7 @@ export const getNewOrAdjacentLeaf = (
 	}
 
 	//2
+	// @ts-ignore
 	if(!plugin.settings.openInAdjacentPane) {
 		return app.workspace.createLeafBySplit(leaf);
 	}

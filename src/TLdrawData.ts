@@ -3,6 +3,8 @@ import {debug} from "./utils/Utils";
 
 export class TLdrawData {
 	private compatibilityMode: boolean = false;
+
+	// @ts-ignore
 	private file: TFile = null;
 
 	// TODO: deal with compressed json
