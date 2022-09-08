@@ -17,8 +17,8 @@ Prepare the required files:
 - The directory structure should look like this: `.obsidian/plugins/plugins/obsidian-tldraw-plugin`
 
 ## Test & Run
-
-- In your Obsidian Vault, on the ribbon, hover over the `dice` icon. It displays `New Tldrawing`
+- In your Obsidian Vault, go to Community Plugins, and enable the plugin
+- On the ribbon, click on the `dice` icon. When hovered over, it displays `New Tldrawing
 - Click on it. That will create a file with extension `.tldraw` and will activate the `obsidian-tldraw-plugin`.
 
 ## Features
