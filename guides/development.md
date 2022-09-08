@@ -1,14 +1,21 @@
 # Development
 
 To install:
-- In your terminal, navigate to `/path/to/ObsidianVault/plugins` and clone this repository
-- in your terminal, navigate to `.obsidian/plugins/plugins/obsidian-tldraw-plugin`
+- in your terminal, navigate to `/path/to/ObsidianVault/plugins` and clone this repository
+- then still in your terminal, navigate to `.obsidian/plugins/plugins/obsidian-tldraw-plugin`
 - run `npm install`
-- run `npm run dev`
 
 To run:
-- In your Obsidian Vault, on the ribbon, click on the `dice` icon. When hovered over, it displays `New Tldrawing`
-- Click on it. That will create a file with extension `.tldraw` and will activate the `obsidian-tldraw-plugin`.
+- in your Obsidian Vault, go to Community Plugins, and enable the plugin
+- on the ribbon, click on the `dice` icon. When hovered over, it displays `New Tldrawing`
+- Click on it. That will create a file with extension `.tldraw` and will activate the `obsidian-tldraw-plugin`
+
+## Development workflow
+
+- in your Obsidian test Vault, add the [Hot-Reload](https://github.com/pjeby/hot-reload) plugin, which reloads the plugin whenever the source code changes.
+- in your terminal, navigate to `/path/to/ObsidianVault/plugins/.obsidian/plugins/plugins/obsidian-tldraw-plugin`
+- run `npm run dev`
+- any new code changes will appear in the Obsidian
 
 ## Helpful resources
 
