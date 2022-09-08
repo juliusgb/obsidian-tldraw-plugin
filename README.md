@@ -1,4 +1,5 @@
-:zap: Development has just started. Definitely not stable. See <https://github.com/tldraw/tldraw/issues/919> :zap:
+:zap: Development has just started. Definitely not stable, but a start. See <https://github.
+com/tldraw/tldraw/issues/919> :zap:
 
 # Obsidian Tldraw Plugin
 
@@ -36,13 +37,3 @@ I appreciate any feedback that you're able to give.
 Please use the [GitHub issue tracker](https://github.com/juliusgb/obsidian-tldraw-plugin/issues/new) to report bugs, request features,
 or suggest improvements, or message me over on Discord (juliusg#0919).
 
-## Helpful resources
-
-- For commits, I'm using "Conventional Commits" - <https://www.conventionalcommits.org/en/v1.0.0/>
-- Obisidan Plugin Developer docs at <https://marcus.se.net/obsidian-plugin-docs/>
-- Tldraw code
-  - clone the repo, <https://github.com/tldraw/tldraw>
-  - in terminal, navigate to /path/to/tldraw
-  - run `yarn && yarn build:packages && yarn build`
-  - run `yarn start` which starts the server on `http://localhost:5420/`
-  - navigate to `http://localhost:5420/` and be inspired by all the examples
