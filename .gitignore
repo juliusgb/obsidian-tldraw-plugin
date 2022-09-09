@@ -13,6 +13,9 @@ package-lock.json
 # They should be uploaded to GitHub releases instead.
 main.js
 
+## jest coverage
+coverage
+
 # Exclude sourcemaps
 *.map
 

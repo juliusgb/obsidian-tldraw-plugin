@@ -11,6 +11,10 @@
     "importHelpers": true,
     "isolatedModules": true,
 	  "strictNullChecks": true,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"outDir": "./dist",
+		"forceConsistentCasingInFileNames": true,
     "lib": [
       "DOM",
       "ES5",
