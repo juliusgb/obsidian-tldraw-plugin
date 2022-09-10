@@ -20,14 +20,14 @@ Prepare the required files:
 ## Test & Run
 - In your Obsidian Vault, go to Community Plugins, and enable the plugin
 - On the ribbon, click on the `dice` icon. When hovered over, it displays `New Tldrawing
-- Click on it. That will create a file with extension `.tldraw` and will activate the `obsidian-tldraw-plugin`.
+- Click on it. That will create a file with extension `.tldr` and will activate the `obsidian-tldraw-plugin`.
 
 ## Features
 
 Current features:
 
-- Ribbon icon, which when clicked, creates a file with extension `.tldraw` opens up Tldraw.
-- Any file with extension `.tldraw` opens up Tldraw.
+- Ribbon icon, which when clicked, creates a file with extension `.tldr` opens up Tldraw.
+- Any file with extension `.tldr` opens up Tldraw.
 
 [This GitHub Project](https://github.com/users/juliusgb/projects/3/views/1) contains most up-to-date plans.
 

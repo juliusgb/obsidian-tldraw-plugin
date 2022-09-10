@@ -9,9 +9,9 @@ export function getDrawingFilename(settings: TldrawSettings): string {
 
 	const filenameWithDateTime = settings.drawingFilenameDateTime !== "" ? dateTimeValue : "";
 
-	const markdownFileExtension = settings.useTldrawExtension ? ".tldraw.md" : ".md";
+	const markdownFileExtension = settings.useTldrawExtension ? ".tldr.md" : ".md";
 
-	const fileExtension = settings.compatibilityMode ? ".tldraw" : markdownFileExtension;
+	const fileExtension = settings.compatibilityMode ? ".tldr" : markdownFileExtension;
 
 	return settings.drawingFilenamePrefix + filenameWithDateTime + fileExtension ;
 }
@@ -59,8 +59,8 @@ export function getNewUniqueFilepath(
 
 	let i = 0;
 
-	const extension = filename.endsWith(".tldraw.md")
-		? ".tldraw.md"
+	const extension = filename.endsWith(".tldr.md")
+		? ".tldr.md"
 		: filename.slice(filename.lastIndexOf("."));
 
 	while (file) {

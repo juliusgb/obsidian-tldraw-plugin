@@ -46,7 +46,7 @@ export default class TldrawPlugin extends Plugin {
 		);
 
 		// Register the extensions you want the view to handle.
-		this.registerExtensions(["tldraw"], VIEW_TYPE_TLDRAW_EMBED);
+		this.registerExtensions(["tldr"], VIEW_TYPE_TLDRAW_EMBED);
 
 		this.registerCommands();
 		this.registerEventListeners();

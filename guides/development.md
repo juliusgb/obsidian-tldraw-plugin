@@ -8,7 +8,7 @@ To install:
 To run:
 - in your Obsidian Vault, go to Community Plugins, and enable the plugin
 - on the ribbon, click on the `dice` icon. When hovered over, it displays `New Tldrawing`
-- Click on it. That will create a file with extension `.tldraw` and will activate the `obsidian-tldraw-plugin`
+- Click on it. That will create a file with extension `.tldr` and will activate the `obsidian-tldraw-plugin`
 
 ## Development workflow
 
