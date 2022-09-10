@@ -47,7 +47,7 @@ export default class TLdrawView extends TextFileView {
 
 		// when the loading of the vault into the memory is done
 		this.app.workspace.onLayoutReady(async () => {
-			this.compatibilityMode = this.file.extension === "tldraw";
+			this.compatibilityMode = this.file.extension === "tldr";
 			await this.plugin.loadSettings();
 
 			debug({where:"TLdrawView.setViewData",file:this.file.name, data:data, before:"checkingDataForNull"})
@@ -70,7 +70,7 @@ export default class TLdrawView extends TextFileView {
 				this.tldrawData.disableCompression = true;
 			}
 			else {
-				// TODO: process .tldraw.md files
+				// TODO: process .tldr.md files
 				this.tldrawData.disableCompression = false;
 			}
 			// use tldrawDataJson
