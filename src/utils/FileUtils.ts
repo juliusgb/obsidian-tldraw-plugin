@@ -59,8 +59,8 @@ export function getNewUniqueFilepath(
 
 	let i = 0;
 
-	const extension = filename.endsWith(".excalidraw.md")
-		? ".excalidraw.md"
+	const extension = filename.endsWith(".tldraw.md")
+		? ".tldraw.md"
 		: filename.slice(filename.lastIndexOf("."));
 
 	while (file) {

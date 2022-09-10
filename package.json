@@ -2,7 +2,7 @@
 	"name": "obsidian-tldraw-plugin",
 	"private": true,
 	"version": "0.0.2",
-	"description": "An Obsidian plugin to edit and view Excalidraw drawings.",
+	"description": "An Obsidian plugin to edit and view Tldraw drawings.",
 	"author": "Julius Gamanyi",
 	"repository": {
 		"type": "git",
