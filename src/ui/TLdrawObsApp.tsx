@@ -2,10 +2,10 @@ import * as React from "react";
 import { Tldraw, TldrawApp, TDDocument, TDFile } from "@tldraw/tldraw";
 //import "../styles.css";
 
-import { useObsidianApp } from "../hooks";
+import { useObsidianApp } from "./hooks";
 
-import { defaultDocument } from '../../utils/defaultDocument'
-import {debug} from "../../utils/Utils";
+import { defaultDocument } from '../../test/defaultDocument'
+import {debug} from "../utils/Utils";
 
 // Will be placed in global scope by extension
 declare let currentFile: TDFile

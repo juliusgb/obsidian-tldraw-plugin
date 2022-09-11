@@ -2,22 +2,22 @@ import {TextFileView, WorkspaceLeaf} from "obsidian";
 
 import * as React from "react";
 import {createRoot, Root} from "react-dom/client";
-import TLdrawObsApp from "./ui/views/TLdrawObsApp";
-import { AppContext } from "./ui/context";
+import TLdrawObsApp from "./TLdrawObsApp";
+import { AppContext } from "./context";
 
 import {
 	VIEW_TYPE_TLDRAW, VIEW_TYPE_TLDRAW_EMBED
-} from "./constants"
+} from "../constants"
 
-import TldrawPlugin from "./main";
+import TldrawPlugin from "../main";
 
 import {
 	TLdrawData
-} from "./TLdrawData";
-import {debug} from "./utils/Utils";
+} from "../TLdrawData";
+import {debug} from "../utils/Utils";
 import {TDDocument} from "@tldraw/tldraw";
-import {defaultDocument} from "./utils/defaultDocument";
-import {TLdrawPluginAPI} from "./api/plugin-api";
+import {defaultDocument} from "../../test/defaultDocument";
+import {TLdrawPluginAPI} from "../api/plugin-api";
 
 export default class TLdrawView extends TextFileView {
 	// public plugin: TldrawPlugin;
@@ -27,7 +27,6 @@ export default class TLdrawView extends TextFileView {
 
 	constructor(leaf: WorkspaceLeaf, public plugin: TldrawPlugin, public tldrawPluginApi: TLdrawPluginAPI) {
 		super(leaf);
-		// this.plugin = plugin;
 		this.tldrawData = new TLdrawData();
 		this.reactRoot = this.createReactRoot();
 	}
@@ -46,7 +45,7 @@ export default class TLdrawView extends TextFileView {
 	setViewData(data: string, clear: boolean) {
 		debug({where:"TLdrawView.setViewData",file:this.file.name})
 
-		// TODO:
+		// data = the json of our drawing
 
 		// when the loading of the vault into the memory is done
 		this.app.workspace.onLayoutReady(async () => {
@@ -55,14 +54,14 @@ export default class TLdrawView extends TextFileView {
 
 			debug({where:"TLdrawView.setViewData.onLayoutReady",file:this.file.name, data:data})
 
+			// TODO: improve if block with one liner
 			let dataToUse = null;
 
-			// data = the json of our drawing
 			if (data) {
 				dataToUse = data;
 			}
 			else {
-				dataToUse = await(this.plugin.getBlankDrawing());
+				dataToUse = await(this.tldrawPluginApi.getBlankDrawing());
 			}
 
 			debug({where:"TLdrawView.setViewData.onLayoutReady",file:this.file.name, data:dataToUse, after:"checkingDataForNull"})

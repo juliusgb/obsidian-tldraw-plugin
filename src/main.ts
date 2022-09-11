@@ -16,7 +16,7 @@ import {
 	TldrawSettingTab
 } from './settings';
 
-import TLdrawView from "./TLdrawView";
+import TLdrawView from "./ui/TLdrawView";
 import {debug} from "./utils/Utils";
 import {TLdrawPluginAPI} from "./api/plugin-api";
 
