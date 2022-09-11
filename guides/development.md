@@ -27,3 +27,11 @@ To run:
 	- run `yarn && yarn build:packages && yarn build`
 	- run `yarn start` which starts the server on `http://localhost:5420/`
 	- navigate to `http://localhost:5420/` and be inspired by all the examples
+
+### Specifications and References
+
+- TypeScript Handbook: <https://www.typescriptlang.org/docs/handbook/>
+- tsconfig.json spec - <https://www.typescriptlang.org/tsconfig>
+- package.json spec - <https://docs.npmjs.com/cli/v6/configuring-npm/package-json>
+- Jest configuration - <https://jestjs.io/docs/configuration>
+- ts-jest - <https://huafu.github.io/ts-jest/user/config/>

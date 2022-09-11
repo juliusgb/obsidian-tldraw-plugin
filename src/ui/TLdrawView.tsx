@@ -7,24 +7,26 @@ import { AppContext } from "./context";
 
 import {
 	VIEW_TYPE_TLDRAW, VIEW_TYPE_TLDRAW_EMBED
-} from "./constants"
+} from "../constants"
 
-import TldrawPlugin from "./main";
+import TldrawPlugin from "../main";
 
 import {
 	TLdrawData
-} from "./TLdrawData";
-import {debug} from "./utils/Utils";
+} from "../TLdrawData";
+import {debug} from "../utils/Utils";
+import {TDDocument} from "@tldraw/tldraw";
+import {defaultDocument} from "../../test/defaultDocument";
+import {TLdrawPluginAPI} from "../api/plugin-api";
 
 export default class TLdrawView extends TextFileView {
-	public plugin: TldrawPlugin;
+	// public plugin: TldrawPlugin;
 	public tldrawData: TLdrawData;
 	public compatibilityMode: boolean = false;
 	private reactRoot: Root;
 
-	constructor(leaf: WorkspaceLeaf, plugin: TldrawPlugin) {
+	constructor(leaf: WorkspaceLeaf, public plugin: TldrawPlugin, public tldrawPluginApi: TLdrawPluginAPI) {
 		super(leaf);
-		this.plugin = plugin;
 		this.tldrawData = new TLdrawData();
 		this.reactRoot = this.createReactRoot();
 	}
@@ -43,25 +45,26 @@ export default class TLdrawView extends TextFileView {
 	setViewData(data: string, clear: boolean) {
 		debug({where:"TLdrawView.setViewData",file:this.file.name})
 
-		// TODO:
+		// data = the json of our drawing
 
 		// when the loading of the vault into the memory is done
 		this.app.workspace.onLayoutReady(async () => {
 			this.compatibilityMode = this.file.extension === "tldr";
 			await this.plugin.loadSettings();
 
-			debug({where:"TLdrawView.setViewData",file:this.file.name, data:data, before:"checkingDataForNull"})
+			debug({where:"TLdrawView.setViewData.onLayoutReady",file:this.file.name, data:data})
 
+			// TODO: improve if block with one liner
 			let dataToUse = null;
 
 			if (data) {
 				dataToUse = data;
 			}
 			else {
-				dataToUse = await(this.plugin.getBlankDrawing());
+				dataToUse = await(this.tldrawPluginApi.getBlankDrawing());
 			}
 
-			debug({where:"TLdrawView.setViewData",file:this.file.name, data:dataToUse, after:"checkingDataForNull"})
+			debug({where:"TLdrawView.setViewData.onLayoutReady",file:this.file.name, data:dataToUse, after:"checkingDataForNull"})
 
 			if (this.compatibilityMode) {
 				// populate tldrawDataJson
@@ -146,6 +149,12 @@ export default class TLdrawView extends TextFileView {
 	private async loadDrawing(justloaded: boolean) {
 		const tldrawDataJson = this.tldrawData.tldrawJson;
 
+		debug({
+			where:"TLdrawView.loadDrawing",
+			file:this.file.name,
+			tldrawDataJson: this.tldrawData.tldrawJson
+		})
+
 		this.instantiateTldraw({
 			shapes: tldrawDataJson.shapes,
 			bindings: tldrawDataJson.bindings,
@@ -154,7 +163,12 @@ export default class TLdrawView extends TextFileView {
 	}
 
 	private instantiateTldraw(param: { assets: number; shapes: any; bindings: any }) {
-		debug({where:"TLdrawView.instantiateTldraw",file:this.file.name})
+		debug({
+			where:"TLdrawView.instantiateTldraw",
+			file:this.file.name,
+			width: this.contentEl.clientWidth,
+			height: this.contentEl.clientHeight,
+		})
 
 		console.log(this.containerEl.children);
 		// Output of console.log
@@ -162,6 +176,14 @@ export default class TLdrawView extends TextFileView {
 		// 0: div.view-header
 		// 1: div.view-content
 		console.log(this.containerEl); // prints the actual HTMLElement, i.e., <div>...</div>
+
+		// TODO:
+		//  parse the json as string, create tldraw TDDocument send to tldraw
+
+		// get the current document
+		// const rInitialDocument = React.useRef<TDDocument>(
+		// 	currentFile ? currentFile.document : defaultDocument
+		// )
 
 		// mount the component
 		const mountableReactRoot = this.reactRoot;
