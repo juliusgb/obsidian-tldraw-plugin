@@ -24,7 +24,8 @@
 		"mobx": "6.6.0",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
-		"react-scripts": "5.0.1"
+		"react-scripts": "5.0.1",
+		"nanoid": "^3.3.4"
 	},
 	"devDependencies": {
 		"@swc-node/jest": "^1.5.2",

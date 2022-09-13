@@ -2,11 +2,10 @@ import {TextFileView, WorkspaceLeaf} from "obsidian";
 
 import * as React from "react";
 import {createRoot, Root} from "react-dom/client";
-import TLdrawObsApp from "./TLdrawObsApp";
 import { AppContext } from "./context";
 
 import {
-	VIEW_TYPE_TLDRAW, VIEW_TYPE_TLDRAW_EMBED
+	VIEW_TYPE_TLDRAW_EMBED
 } from "../constants"
 
 import TldrawPlugin from "../main";
@@ -15,12 +14,15 @@ import {
 	TLdrawData
 } from "../TLdrawData";
 import {debug} from "../utils/Utils";
-import {TDDocument} from "@tldraw/tldraw";
-import {defaultDocument} from "../../test/defaultDocument";
 import {TLdrawPluginAPI} from "../api/plugin-api";
+import {nanoid} from "nanoid";
+import ObsTLdrawApp from "./ObsTLdrawApp";
 
+/**
+ * The TLdrawView uses Obsidian's TextFileView, which means
+ * it's underlying model Obsidian's is a text file.
+ */
 export default class TLdrawView extends TextFileView {
-	// public plugin: TldrawPlugin;
 	public tldrawData: TLdrawData;
 	public compatibilityMode: boolean = false;
 	private reactRoot: Root;
@@ -45,14 +47,22 @@ export default class TLdrawView extends TextFileView {
 	setViewData(data: string, clear: boolean) {
 		debug({where:"TLdrawView.setViewData",file:this.file.name})
 
-		// data = the json of our drawing
-
 		// when the loading of the vault into the memory is done
 		this.app.workspace.onLayoutReady(async () => {
 			this.compatibilityMode = this.file.extension === "tldr";
 			await this.plugin.loadSettings();
 
 			debug({where:"TLdrawView.setViewData.onLayoutReady",file:this.file.name, data:data})
+
+			//	data = the json of our drawing
+			//	if data is null, set it to this.tldrawPluginApi.getBlankDrawing()
+			//	if compatibilityMode:
+			//		loadLegacyData loads the TDFile object
+			//	else:
+			//		process .tldraw.md files
+			//		compress these files
+			//	call loadDrawing
+
 
 			// TODO: improve if block with one liner
 			let dataToUse = null;
@@ -61,7 +71,7 @@ export default class TLdrawView extends TextFileView {
 				dataToUse = data;
 			}
 			else {
-				dataToUse = await(this.tldrawPluginApi.getBlankDrawing());
+				dataToUse = await(this.tldrawPluginApi.blankDrawing(this.file.name, nanoid()));
 			}
 
 			debug({where:"TLdrawView.setViewData.onLayoutReady",file:this.file.name, data:dataToUse, after:"checkingDataForNull"})
@@ -85,41 +95,19 @@ export default class TLdrawView extends TextFileView {
 	// resets the view whenever Obsidian unloads the file.
 	clear() {
 		console.log("view.clear()");
+		console.log("view.clear()");
 
 		// TODO:
 	}
 
+	// returns the current state of the data.
+	// Obsidian uses this method to decode the view data into plaintext before writing it to a file.
 	getViewType() {
 		console.log("view.getViewType()");
+
 		return VIEW_TYPE_TLDRAW_EMBED
 	}
 
-
-
-	// hooks to setup and tear down the view
-	// async onOpen() {
-	// 	console.log("view.onOpen()");
-	//
-	// 	console.log(this.containerEl.children);
-	// 	// Output of console.log
-	// 	// HTMLCollection(2) [div.view-header, div.view-content]
-	// 	// 0: div.view-header
-	// 	// 1: div.view-content
-	//
-	// 	console.log(this.containerEl); // prints the actual HTMLElement, i.e., <div>...</div>
-	//
-	// 	// mount the component
-	// 	const mountableReactRoot = this.reactRoot;
-	//
-	// 	mountableReactRoot.render(
-	// 		<AppContext.Provider value={this.app}>
-	// 			<TLdrawObsApp />
-	// 		</AppContext.Provider>
-	// 	);
-	//
-	//
-	// 	// TODO: how pass the data (tldraw json) to the tldraw react component
-	// }
 
 	private createReactRoot(): Root {
 		const obsidianContentDivContainer = this.containerEl.children[1];
@@ -133,9 +121,11 @@ export default class TLdrawView extends TextFileView {
 		// React 18's way of removing a mounted React component from the DOM.
 		this.reactRoot.unmount();
 
+		// clean up any elements this custom view created.
 		this.contentEl.empty();
 	}
 
+	// make data editable
 	refresh() {
 		console.log("view.refresh()");
 
@@ -147,22 +137,12 @@ export default class TLdrawView extends TextFileView {
 	 * @param justloaded - a flag to trigger zoom to fit after the drawing has been loaded
 	 */
 	private async loadDrawing(justloaded: boolean) {
-		const tldrawDataJson = this.tldrawData.tldrawJson;
+		// TODO:
 
-		debug({
-			where:"TLdrawView.loadDrawing",
-			file:this.file.name,
-			tldrawDataJson: this.tldrawData.tldrawJson
-		})
-
-		this.instantiateTldraw({
-			shapes: tldrawDataJson.shapes,
-			bindings: tldrawDataJson.bindings,
-			assets: tldrawDataJson.assets
-		});
+		this.instantiateTldraw();
 	}
 
-	private instantiateTldraw(param: { assets: number; shapes: any; bindings: any }) {
+	private instantiateTldraw() {
 		debug({
 			where:"TLdrawView.instantiateTldraw",
 			file:this.file.name,
@@ -177,22 +157,15 @@ export default class TLdrawView extends TextFileView {
 		// 1: div.view-content
 		console.log(this.containerEl); // prints the actual HTMLElement, i.e., <div>...</div>
 
-		// TODO:
-		//  parse the json as string, create tldraw TDDocument send to tldraw
-
-		// get the current document
-		// const rInitialDocument = React.useRef<TDDocument>(
-		// 	currentFile ? currentFile.document : defaultDocument
-		// )
-
 		// mount the component
 		const mountableReactRoot = this.reactRoot;
 
-		// TODO: how pass the data (tldraw json) to the tldraw react component
-
 		mountableReactRoot.render(
 			<AppContext.Provider value={this.app}>
-				<TLdrawObsApp />
+				<ObsTLdrawApp
+					currentFile={this.tldrawData.tldrawDataTDFile}
+					theme={this.tldrawPluginApi.darkTheme()}
+				/>
 			</AppContext.Provider>
 		);
 	}
