@@ -16,7 +16,8 @@ import {
 import {debug} from "../utils/Utils";
 import {TLdrawPluginAPI} from "../api/plugin-api";
 import {nanoid} from "nanoid";
-import ObsTLdrawApp from "./ObsTLdrawApp";
+import ObsTLdrawApp, {initializeTDFile} from "./ObsTLdrawApp";
+import {TDFile} from "@tldraw/tldraw";
 
 /**
  * The TLdrawView uses Obsidian's TextFileView, which means
@@ -26,6 +27,10 @@ export default class TLdrawView extends TextFileView {
 	public tldrawData: TLdrawData;
 	public compatibilityMode: boolean = false;
 	private reactRoot: Root;
+
+	// indicates that a new file is being loaded.
+	// After drawing is loaded, it's set to true
+	private isLoaded: boolean = false;
 
 	constructor(leaf: WorkspaceLeaf, public plugin: TldrawPlugin, public tldrawPluginApi: TLdrawPluginAPI) {
 		super(leaf);
@@ -39,13 +44,29 @@ export default class TLdrawView extends TextFileView {
 		console.log("view.getViewData()");
 
 		// TODO: return what should be saved to disk
-		return "";
+
+		if (!this.tldrawData.loaded) {
+			return this.data;
+		}
+
+		if (this.compatibilityMode) {
+			return JSON.stringify(this.tldrawData.tldrawDataFile, null, "\t");
+		}
+		debug({where:"TLdrawView.setViewData",data:this.data})
+		return this.data;
 	}
 
 	// updates the view whenever Obsidian reads new data from a file.
 	// Use this method to encode the text data into a format that makes it easier to work with.
+	// If clear is set, then it means we're opening a completely different file.
 	setViewData(data: string, clear: boolean) {
 		debug({where:"TLdrawView.setViewData",file:this.file.name})
+
+		this.isLoaded = false;
+
+		if (clear) {
+			this.clear();
+		}
 
 		// when the loading of the vault into the memory is done
 		this.app.workspace.onLayoutReady(async () => {
@@ -54,30 +75,25 @@ export default class TLdrawView extends TextFileView {
 
 			debug({where:"TLdrawView.setViewData.onLayoutReady",file:this.file.name, data:data})
 
-			//	data = the json of our drawing
-			//	if data is null, set it to this.tldrawPluginApi.getBlankDrawing()
-			//	if compatibilityMode:
-			//		loadLegacyData loads the TDFile object
-			//	else:
-			//		process .tldraw.md files
-			//		compress these files
-			//	call loadDrawing
-
-
 			// TODO: improve if block with one liner
 			let dataToUse = null;
 
 			if (data) {
-				dataToUse = data;
+				//dataToUse = data;
+				dataToUse = this.data = data.replaceAll("\r\n", "\n").replaceAll("\r", "\n");
 			}
 			else {
 				dataToUse = await(this.tldrawPluginApi.blankDrawing(this.file.name, nanoid()));
 			}
 
-			debug({where:"TLdrawView.setViewData.onLayoutReady",file:this.file.name, data:dataToUse, after:"checkingDataForNull"})
+			debug({
+				where:"TLdrawView.setViewData.onLayoutReady",
+				file:this.file.name,
+				data:dataToUse,
+				after:"checkingDataForNull"})
 
 			if (this.compatibilityMode) {
-				// populate tldrawDataJson
+				// populate tldrawDataFile
 				await this.tldrawData.loadLegacyData(dataToUse, this.file);
 
 				this.tldrawData.disableCompression = true;
@@ -88,7 +104,7 @@ export default class TLdrawView extends TextFileView {
 			}
 			// use tldrawDataJson
 			await this.loadDrawing(true);
-
+			this.isLoaded = true;
 		});
 	}
 
@@ -97,15 +113,17 @@ export default class TLdrawView extends TextFileView {
 		console.log("view.clear()");
 		console.log("view.clear()");
 
-		// TODO:
+		// TODO: implement
+		// without this, following happens:
+		// 1. Open file1.
+		// 2. While file1 is open, click on file2 to open.
+		// 3. file2 is not displayed. But file1.
 	}
 
-	// returns the current state of the data.
-	// Obsidian uses this method to decode the view data into plaintext before writing it to a file.
 	getViewType() {
 		console.log("view.getViewType()");
 
-		return VIEW_TYPE_TLDRAW_EMBED
+		return VIEW_TYPE_TLDRAW_EMBED;
 	}
 
 
@@ -123,13 +141,6 @@ export default class TLdrawView extends TextFileView {
 
 		// clean up any elements this custom view created.
 		this.contentEl.empty();
-	}
-
-	// make data editable
-	refresh() {
-		console.log("view.refresh()");
-
-		// TODO: how to let user save diagram
 	}
 
 	/**
@@ -157,16 +168,31 @@ export default class TLdrawView extends TextFileView {
 		// 1: div.view-content
 		console.log(this.containerEl); // prints the actual HTMLElement, i.e., <div>...</div>
 
+		debug({
+			where:"TLdrawView.instantiateTldraw",
+			before:"react mounting",
+			mmmm:this.tldrawData,
+		})
+
+		initializeTDFile(this.tldrawData.tldrawDataFile);
+
 		// mount the component
 		const mountableReactRoot = this.reactRoot;
 
 		mountableReactRoot.render(
 			<AppContext.Provider value={this.app}>
 				<ObsTLdrawApp
-					currentFile={this.tldrawData.tldrawDataTDFile}
+					obsTldrawData={this.tldrawData}
 					theme={this.tldrawPluginApi.darkTheme()}
 				/>
 			</AppContext.Provider>
 		);
 	}
+
+	// public updateTLdrawDataOut(tldrawDataOut: TDFile) {
+	// 	debug({
+	// 		where:"TLdrawView.updateTLdrawDataOut", tldrawDataOut:tldrawDataOut	});
+	//
+	// 	// this.tldrawData.tldrawDataOutTDFile = tldrawDataOut;
+	// }
 }
