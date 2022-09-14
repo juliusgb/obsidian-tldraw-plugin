@@ -23,7 +23,7 @@ export const DEFAULT_SETTINGS: TldrawSettings = {
 	drawingFilenameDateTime: "YYYY-MM-DD HH.mm.ss",
 	compatibilityMode: true,
 	useTldrawExtension: false, // TODO: until processing diagram as markdown is sorted
-	matchTheme: false
+	matchTheme: true
 };
 
 

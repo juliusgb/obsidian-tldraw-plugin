@@ -4,9 +4,9 @@ import {TldrawSettings} from "../settings";
 import {debug} from "../utils/Utils";
 import {checkAndCreateFolder, getDrawingFilename, getNewUniqueFilepath} from "../utils/FileUtils";
 import {getNewOrAdjacentLeaf, isObsidianThemeDark} from "../utils/ObsidianUtils";
-import {BLANK_DRAWING, CTRL_OR_CMD,} from "../constants";
 import TldrawPlugin from "../main";
 import {TLdrawData} from "../TLdrawData";
+import {nanoid} from "nanoid";
 
 export class TLdrawPluginAPI {
 
@@ -57,38 +57,15 @@ export class TLdrawPluginAPI {
 			const file =
 				await this.obsidianApp.vault.create(
 					fname,
-					initData ?? (await this.getBlankDrawing()));
+					initData ?? (await(this.blankDrawing(filename, nanoid())))
+				);
 
 			// TODO: wait for metadata cache
 
 			return file;
 	}
 
-	/**
-	 * Blank tldraw drawing in json format.
-	 * <br/>
-	 * It can be opened in other tdlraw tools (tldraw.com, vscode extension)
-	 */
-	public async getBlankDrawing(): Promise<string> {
-		debug({where:"TLdrawPluginAPI.getBlankDrawing",})
 
-		// TODO: add template stuff
-
-		const blankDrawing = BLANK_DRAWING;
-
-		if (this.settings.compatibilityMode) {
-			return blankDrawing;
-		}
-		else {
-			// TODO: compressed json
-
-			return blankDrawing;
-		}
-	}
-
-	public loadDrawing() {
-
-	}
 
 	public openDrawing(
 		drawingFile: TFile,
@@ -136,5 +113,60 @@ export class TLdrawPluginAPI {
 
 	async loadLegacyData(dataToUse: any, file: TFile): Promise<TLdrawData> {
 		return new TLdrawData();
+	}
+
+	/**
+	 * Blank tldraw drawing in json format.
+	 * <br/>
+	 * It can be opened in other tdlraw tools (tldraw.com, vscode extension)
+	 * @param drawingFilename
+	 * @param drawingId
+	 */
+	public blankDrawing(drawingFilename: string, drawingId: string): string {
+
+		const drawing =
+			`
+{
+  "name": "${drawingFilename}",
+  "fileHandle": null,
+  "document": {
+    "id": "${drawingId}",
+    "name": "${drawingFilename}",
+    "version": 15.5,
+    "pages": {
+      "page": {
+        "id": "page",
+        "name": "Page 1",
+        "childIndex": 1,
+        "shapes": {},
+        "bindings": {}
+      }
+    },
+    "pageStates": {
+      "page": {
+        "id": "page",
+        "selectedIds": [],
+        "camera": {
+          "point": [
+            273.97,
+            -52.98
+          ],
+          "zoom": 0.75
+        },
+        "editingId": null
+      }
+    },
+    "assets": {}
+  },
+  "assets": {}
+}
+	`;
+
+		debug({where:"TLdrawPluginAPI.blankDrawing", mdrawing:drawing});
+		return drawing;
+	}
+
+	public darkTheme(): boolean {
+		return this.settings.matchTheme && isObsidianThemeDark()
 	}
 }
