@@ -2,9 +2,8 @@ import * as React from "react";
 import {Tldraw, TldrawApp, TDDocument, TDFile} from "@tldraw/tldraw";
 //import "../styles.css";
 
-import {debug, errorlog} from "../utils/Utils";
+import {debug} from "../utils/Utils";
 import {defaultDocument} from "./defaultDocument";
-import {TLdrawData} from "../TLdrawData";
 
 let currentFile: TDFile | null = null;
 
@@ -41,11 +40,11 @@ export default function ObsTLdrawApp(props: any) {
 		}
 	}, [])
 
-	const handlePersist = React.useCallback((tldrawApp: TldrawApp) => {
+	const handleChange = React.useCallback((tldrawApp: TldrawApp) => {
 		const document = rCurrentDoc.current;
 
 		debug({
-			where:"ObsTLdrawApp.handlePersist",
+			where:"ObsTLdrawApp.handleChange",
 			callBackTldraw:tldrawApp,
 			currTDFile:currentFile,
 			docInHandlePersist:document,
@@ -59,22 +58,21 @@ export default function ObsTLdrawApp(props: any) {
 		rCurrentDoc.current = nextDocUpdatedInTldraw;
 
 		debug({
-			where:"ObsTLdrawApp.handlePersist",
+			where:"ObsTLdrawApp.handleChange",
 			after:"state change",
 			currTDFile:currentFile
 		});
 	}, []);
 
-
 	return (
-		<div className="tldrawApp" >
+		<div className="tldrawApp">
 			<h1>TLdraw Example</h1>
 			<div className="tldraw-wrapper">
 				<Tldraw
 					id={rCurrentDoc.current.id}
 					document={rCurrentDoc.current}
 					onMount={handleMount}
-					onPersist={handlePersist}
+					onChange={handleChange} // get updated when the document changes / adds an undo/redo entry
 					darkMode={ props.theme }
 				/>
 			</div>
