@@ -17,7 +17,6 @@ import {debug} from "../utils/Utils";
 import {TLdrawPluginAPI} from "../api/plugin-api";
 import {nanoid} from "nanoid";
 import ObsTLdrawApp, {initializeTDFile} from "./ObsTLdrawApp";
-import {TDFile} from "@tldraw/tldraw";
 
 /**
  * The TLdrawView uses Obsidian's TextFileView, which means
@@ -188,11 +187,4 @@ export default class TLdrawView extends TextFileView {
 			</AppContext.Provider>
 		);
 	}
-
-	// public updateTLdrawDataOut(tldrawDataOut: TDFile) {
-	// 	debug({
-	// 		where:"TLdrawView.updateTLdrawDataOut", tldrawDataOut:tldrawDataOut	});
-	//
-	// 	// this.tldrawData.tldrawDataOutTDFile = tldrawDataOut;
-	// }
 }

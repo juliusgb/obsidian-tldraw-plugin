@@ -15,11 +15,12 @@ html,
 .tldrawApp {
 	font-family: sans-serif;
 	text-align: center;
+	height: 100%; /* keeps the gray background */
 }
 
 .tldraw-wrapper {
-	height: 800px;
-	margin: 50px;
 	position: relative;
+	height: 78%;
+	margin: 50px;
 	overflow: hidden;
 }
