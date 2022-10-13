@@ -22,7 +22,7 @@ export class TLdrawPluginAPI {
 		foldername?: string,
 		initialData?: string): Promise<string> {
 
-		debug({where:"TLdrawPluginAPI.createAndOpenDrawing",})
+		// debug({where:"TLdrawPluginAPI.createAndOpenDrawing",})
 
 		let drawingFilename;
 
@@ -46,9 +46,9 @@ export class TLdrawPluginAPI {
 		foldername?: string,
 		initData?: string): Promise<TFile> {
 
-			debug({where:"TLdrawPluginAPI.createDrawing",})
+		// debug({where:"TLdrawPluginAPI.createDrawing",})
 
-			const folderpath = normalizePath(foldername ? foldername : this.settings.folder);
+		const folderpath = normalizePath(foldername ? foldername : this.settings.folder);
 
 			//create folder if it does not exist
 			await checkAndCreateFolder(folderpath);
@@ -74,12 +74,12 @@ export class TLdrawPluginAPI {
 		active: boolean,
 		subpath?: string) {
 
-		debug({
-			where:"TLdrawPluginAPI.openDrawing",
-			drawingFile:drawingFile,
-			location:location,
-			active:active,
-			subpath:subpath})
+		// debug({
+		// 	where:"TLdrawPluginAPI.openDrawing",
+		// 	drawingFile:drawingFile,
+		// 	location:location,
+		// 	active:active,
+		// 	subpath:subpath})
 
 		let leaf: WorkspaceLeaf;
 		if(location === "popout-window") {
@@ -163,7 +163,7 @@ export class TLdrawPluginAPI {
 }
 	`;
 
-		debug({where:"TLdrawPluginAPI.blankDrawing", mdrawing:drawing});
+		// debug({where:"TLdrawPluginAPI.blankDrawing", mdrawing:drawing});
 		return drawing;
 	}
 

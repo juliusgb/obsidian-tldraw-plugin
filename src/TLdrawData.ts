@@ -57,7 +57,7 @@ export class TLdrawData {
 			new Notice('The file looks corrupted!');
 		}
 
-		debug({where:"TLdrawData.loadLegacyData",file:this.file.name, data:this.tldrawJson, after:"loadLegacyData"});
+		// debug({where:"TLdrawData.loadLegacyData",file:this.file.name, data:this.tldrawJson, after:"loadLegacyData"});
 
 		return true;
 

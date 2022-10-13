@@ -66,7 +66,7 @@ export default class TldrawPlugin extends Plugin {
 	}
 
 	private registerCommands() {
-		debug({where:"TLdrawPlugin.registerCommands",})
+		//debug({where:"TLdrawPlugin.registerCommands",})
 		// TODO: handle i18n (internationalization and localization)
 
 		// This creates an icon in the left ribbon.
@@ -78,7 +78,7 @@ export default class TldrawPlugin extends Plugin {
 	}
 
 	private registerEventListeners() {
-		debug({where:"TLdrawPlugin.registerCommands",});
+		//debug({where:"TLdrawPlugin.registerCommands",});
 
 		// If the plugin hooks up any global DOM events (on parts of the app that doesn't belong to this plugin)
 		// Using this function will automatically remove the event listener when this plugin is disabled.

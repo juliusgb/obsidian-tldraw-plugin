@@ -8,7 +8,7 @@ import {defaultDocument} from "./defaultDocument";
 let currentFile: TDFile | null = null;
 
 export function initializeTDFile(initialTDfile: TDFile) {
-	debug({where:"ObsTLdrawApp.initializeTDFile", initTDfile:initialTDfile});
+	// debug({where:"ObsTLdrawApp.initializeTDFile", initTDfile:initialTDfile});
 	currentFile = initialTDfile;
 }
 
@@ -31,13 +31,13 @@ export default function ObsTLdrawApp(props: any) {
 
 		const document = rCurrentDoc.current;
 
-		debug({
-			where: "ObsTLdrawApp.handleMount",
-			mApp: rTldrawApp,
-			before: "tldrawApp.loadDocument",
-			currTDFile: currentFile,
-			docInHandleMount: document,
-			appcss: TldrawApp.assetSrc});
+		// debug({
+		// 	where: "ObsTLdrawApp.handleMount",
+		// 	mApp: rTldrawApp,
+		// 	before: "tldrawApp.loadDocument",
+		// 	currTDFile: currentFile,
+		// 	docInHandleMount: document,
+		// 	appcss: TldrawApp.assetSrc});
 
 		// file only changes in tldraw that's embedded in obsidian
 		if (!rLoaded.current) {
@@ -49,23 +49,23 @@ export default function ObsTLdrawApp(props: any) {
 	const handleChange = React.useCallback((tldrawApp: TldrawApp) => {
 		const document = rCurrentDoc.current;
 
-		debug({
-			where:"ObsTLdrawApp.handleChange",
-			callBackTldraw:tldrawApp,
-			currTDFile:currentFile,
-			docInHandleChange:document,
-			myStateSnapshot: tldrawApp.state,
-			before:"state change"
-		});
+		// debug({
+		// 	where:"ObsTLdrawApp.handleChange",
+		// 	callBackTldraw:tldrawApp,
+		// 	currTDFile:currentFile,
+		// 	docInHandleChange:document,
+		// 	myStateSnapshot: tldrawApp.state,
+		// 	before:"state change"
+		// });
 
 		const nextDocUpdatedInTldraw = tldrawApp.state.document;
 		rCurrentDoc.current = nextDocUpdatedInTldraw;
 
-		debug({
-			where:"ObsTLdrawApp.handleChange",
-			after:"state change",
-			currTDFile:currentFile
-		});
+		// debug({
+		// 	where:"ObsTLdrawApp.handleChange",
+		// 	after:"state change",
+		// 	currTDFile:currentFile
+		// });
 	}, []);
 
 	getTldrawDoc = () => {

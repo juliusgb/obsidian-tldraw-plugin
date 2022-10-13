@@ -84,7 +84,7 @@ export default class TLdrawView extends TextFileView {
 
 			return JSON.stringify(currentTldrawDocument, null, "\t");
 		}
-		debug({where:"TLdrawView.getViewData",data:this.data})
+		// debug({where:"TLdrawView.getViewData",data:this.data})
 		return this.data;
 	}
 
@@ -92,7 +92,7 @@ export default class TLdrawView extends TextFileView {
 	// Use this method to encode the text data into a format that makes it easier to work with.
 	// If clear is set, then it means we're opening a completely different file.
 	setViewData(data: string, clear: boolean) {
-		debug({where:"TLdrawView.setViewData",file:this.file.name})
+		// debug({where:"TLdrawView.setViewData",file:this.file.name})
 
 		this.isLoaded = false;
 
@@ -105,7 +105,7 @@ export default class TLdrawView extends TextFileView {
 			this.compatibilityMode = this.file.extension === "tldr";
 			await this.plugin.loadSettings();
 
-			debug({where:"TLdrawView.setViewData.onLayoutReady",file:this.file.name, data:data})
+			// debug({where:"TLdrawView.setViewData.onLayoutReady",file:this.file.name, data:data})
 
 			// TODO: improve if block with one liner
 			let dataToUse = null;
@@ -117,11 +117,11 @@ export default class TLdrawView extends TextFileView {
 				dataToUse = await(this.tldrawPluginApi.blankDrawing(this.file.name, nanoid()));
 			}
 
-			debug({
-				where:"TLdrawView.setViewData.onLayoutReady",
-				file:this.file.name,
-				data:dataToUse,
-				after:"checkingDataForNull"})
+			// debug({
+			// 	where:"TLdrawView.setViewData.onLayoutReady",
+			// 	file:this.file.name,
+			// 	data:dataToUse,
+			// 	after:"checkingDataForNull"})
 
 			if (this.compatibilityMode) {
 				// populate tldrawDataFile
@@ -186,12 +186,12 @@ export default class TLdrawView extends TextFileView {
 	}
 
 	private instantiateTldraw() {
-		debug({
-			where:"TLdrawView.instantiateTldraw",
-			file:this.file.name,
-			width: this.contentEl.clientWidth,
-			height: this.contentEl.clientHeight,
-		})
+		// debug({
+		// 	where:"TLdrawView.instantiateTldraw",
+		// 	file:this.file.name,
+		// 	width: this.contentEl.clientWidth,
+		// 	height: this.contentEl.clientHeight,
+		// })
 
 		console.log(this.containerEl.children);
 		// Output of console.log
@@ -200,11 +200,11 @@ export default class TLdrawView extends TextFileView {
 		// 1: div.view-content
 		console.log(this.containerEl); // prints the actual HTMLElement, i.e., <div>...</div>
 
-		debug({
-			where:"TLdrawView.instantiateTldraw",
-			before:"react mounting",
-			mmmm:this.tldrawData,
-		})
+		// debug({
+		// 	where:"TLdrawView.instantiateTldraw",
+		// 	before:"react mounting",
+		// 	mmmm:this.tldrawData,
+		// })
 
 		initializeTDFile(this.tldrawData.tldrawDataFile);
 
