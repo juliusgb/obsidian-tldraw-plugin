@@ -7,6 +7,7 @@ import {getNewOrAdjacentLeaf, isObsidianThemeDark} from "../utils/ObsidianUtils"
 import TldrawPlugin from "../main";
 import {TLdrawData} from "../TLdrawData";
 import {nanoid} from "nanoid";
+import {getTldrawDoc} from "../ui/ObsTLdrawApp";
 
 export class TLdrawPluginAPI {
 
@@ -168,5 +169,12 @@ export class TLdrawPluginAPI {
 
 	public darkTheme(): boolean {
 		return this.settings.matchTheme && isObsidianThemeDark()
+	}
+
+	// TODO: move to own file
+	// back and forth with tldraw
+	getCurrentTldrawDoc() {
+		const currentTldrawDoc = getTldrawDoc();
+		return currentTldrawDoc;
 	}
 }

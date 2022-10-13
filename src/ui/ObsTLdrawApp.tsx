@@ -12,6 +12,11 @@ export function initializeTDFile(initialTDfile: TDFile) {
 	currentFile = initialTDfile;
 }
 
+/**
+ * returns the current TDFile object. It contains the most current drawing.
+ */
+let getTldrawDoc: Function;
+
 export default function ObsTLdrawApp(props: any) {
 	const rLoaded = React.useRef(false);
 	const rTldrawApp = React.useRef<TldrawApp>();
@@ -34,6 +39,7 @@ export default function ObsTLdrawApp(props: any) {
 			docInHandleMount: document,
 			appcss: TldrawApp.assetSrc});
 
+		// file only changes in tldraw that's embedded in obsidian
 		if (!rLoaded.current) {
 			tldrawApp.loadDocument(document);
 			rLoaded.current = true;
@@ -47,12 +53,10 @@ export default function ObsTLdrawApp(props: any) {
 			where:"ObsTLdrawApp.handleChange",
 			callBackTldraw:tldrawApp,
 			currTDFile:currentFile,
-			docInHandlePersist:document,
+			docInHandleChange:document,
 			myStateSnapshot: tldrawApp.state,
 			before:"state change"
 		});
-
-		// TODO: figure out why/how this works
 
 		const nextDocUpdatedInTldraw = tldrawApp.state.document;
 		rCurrentDoc.current = nextDocUpdatedInTldraw;
@@ -64,6 +68,17 @@ export default function ObsTLdrawApp(props: any) {
 		});
 	}, []);
 
+	getTldrawDoc = () => {
+		const currentDrawingDocument = rCurrentDoc.current;
+
+		const drawingDocFromTldrawSide: TDFile = {
+			...currentFile,
+			document: currentDrawingDocument
+		} as TDFile;
+
+		return drawingDocFromTldrawSide;
+	}
+
 	return (
 		<div className="tldrawApp">
 			<h1>TLdraw Example</h1>
@@ -73,9 +88,12 @@ export default function ObsTLdrawApp(props: any) {
 					document={rCurrentDoc.current}
 					onMount={handleMount}
 					onChange={handleChange} // get updated when the document changes / adds an undo/redo entry
+					// leave saving the drawing as json to Obsidian
 					darkMode={ props.theme }
 				/>
 			</div>
 		</div>
 	)
 }
+
+export { getTldrawDoc }
