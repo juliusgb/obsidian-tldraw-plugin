@@ -24,10 +24,7 @@ Prepare the required files:
 
 ## Features
 
-Current features:
-
-- Ribbon icon, which when clicked, creates a file with extension `.tldr` opens up Tldraw.
-- Any file with extension `.tldr` opens up Tldraw.
+See [CHANGELOG](./CHANGELOG.md) for details.
 
 [This GitHub Project](https://github.com/users/juliusgb/projects/3/views/1) contains most up-to-date plans.
 

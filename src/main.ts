@@ -5,9 +5,9 @@ import {
 
 import {
 	CTRL_OR_CMD,
-	ICON_NAME,
-	TLDRAW_ICON,
-	VIEW_TYPE_TLDRAW, VIEW_TYPE_TLDRAW_EMBED
+	ICON_NAME, TLDRAW_ICON,
+	VIEW_TYPE_TLDRAW, VIEW_TYPE_TLDRAW_EMBED,
+	DISK_ICON, DISK_ICON_NAME,
 } from "./constants";
 
 import {
@@ -26,6 +26,7 @@ export default class TldrawPlugin extends Plugin {
 
 	async onload() {
 		addIcon(ICON_NAME, TLDRAW_ICON);
+		addIcon(DISK_ICON_NAME, DISK_ICON);
 
 		await this.loadSettings();
 		// adds a settings tab so the user can configure various aspects of the plugin
@@ -65,7 +66,7 @@ export default class TldrawPlugin extends Plugin {
 	}
 
 	private registerCommands() {
-		debug({where:"TLdrawPlugin.registerCommands",})
+		//debug({where:"TLdrawPlugin.registerCommands",})
 		// TODO: handle i18n (internationalization and localization)
 
 		// This creates an icon in the left ribbon.
@@ -77,7 +78,7 @@ export default class TldrawPlugin extends Plugin {
 	}
 
 	private registerEventListeners() {
-		debug({where:"TLdrawPlugin.registerCommands",});
+		//debug({where:"TLdrawPlugin.registerCommands",});
 
 		// If the plugin hooks up any global DOM events (on parts of the app that doesn't belong to this plugin)
 		// Using this function will automatically remove the event listener when this plugin is disabled.
