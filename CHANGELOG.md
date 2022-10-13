@@ -1,5 +1,12 @@
 # Obsidian Tldraw Plugin Changelog
 
+## 0.1.0
+
+### New
+
+Can now edit and click in Obsidian to save the drawing which updates the `.tldr` file:
+https://github.com/juliusgb/obsidian-tldraw-plugin/issues/26
+
 ## 0.0.5
 
 ### Improvements
