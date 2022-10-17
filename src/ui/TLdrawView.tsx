@@ -5,8 +5,8 @@ import {createRoot, Root} from "react-dom/client";
 import { AppContext } from "./context";
 
 import {
-	DISK_ICON_NAME,
-	VIEW_TYPE_TLDRAW_EMBED
+	VIEW_TYPE_TLDRAW_EMBED,
+	SAVE_DISK_ICON
 } from "../constants"
 
 import TldrawPlugin from "../main";
@@ -41,14 +41,14 @@ export default class TLdrawView extends TextFileView {
 
 
 
-	diskIcon: HTMLElement;
+	forceSaveIcon: HTMLElement;
 
 	onload() {
 		console.log("ONLOAD");
 
-		this.diskIcon = this.addAction(
-			DISK_ICON_NAME,
-			'FORCE_SAVE',
+		this.forceSaveIcon = this.addAction(
+			SAVE_DISK_ICON,
+			'FORCE SAVE',
 			async () => {
 				await this.save(false, true);
 				new Notice("Save successful", 1000);

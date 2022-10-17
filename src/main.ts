@@ -7,7 +7,6 @@ import {
 	CTRL_OR_CMD,
 	ICON_NAME, TLDRAW_ICON,
 	VIEW_TYPE_TLDRAW, VIEW_TYPE_TLDRAW_EMBED,
-	DISK_ICON, DISK_ICON_NAME,
 } from "./constants";
 
 import {
@@ -26,7 +25,6 @@ export default class TldrawPlugin extends Plugin {
 
 	async onload() {
 		addIcon(ICON_NAME, TLDRAW_ICON);
-		addIcon(DISK_ICON_NAME, DISK_ICON);
 
 		await this.loadSettings();
 		// adds a settings tab so the user can configure various aspects of the plugin
