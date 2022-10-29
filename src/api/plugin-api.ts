@@ -74,12 +74,8 @@ export class TLdrawPluginAPI {
 		active: boolean,
 		subpath?: string) {
 
-		// debug({
-		// 	where:"TLdrawPluginAPI.openDrawing",
-		// 	drawingFile:drawingFile,
-		// 	location:location,
-		// 	active:active,
-		// 	subpath:subpath})
+		//debug({where:"TLdrawPluginAPI.openDrawing", drawingFile:drawingFile, location:location, active:active,
+		// subpath:subpath});
 
 		let leaf: WorkspaceLeaf;
 		if(location === "popout-window") {
@@ -110,10 +106,6 @@ export class TLdrawPluginAPI {
 	}
 	public editDrawing() {
 
-	}
-
-	async loadLegacyData(dataToUse: any, file: TFile): Promise<TLdrawData> {
-		return new TLdrawData();
 	}
 
 	/**
