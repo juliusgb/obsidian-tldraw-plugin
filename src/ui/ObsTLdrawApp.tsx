@@ -6,6 +6,7 @@ import {debug, errorlog} from "../utils/Utils";
 import {defaultDocument} from "./defaultDocument";
 import * as util from "util";
 
+// not part of any react lifecycle
 let currentFile: TDFile | null = null;
 
 export function initializeTDFile(initialTDfile: TDFile) {
