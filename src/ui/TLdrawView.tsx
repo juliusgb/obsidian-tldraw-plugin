@@ -215,8 +215,6 @@ export default class TLdrawView extends TextFileView {
 
 		debug({where: "TLdrawView.instantiateTldraw2", mtldrawData: this.tldrawData, mtldrawDataFile: this.tldrawData.tldrawDataFile });
 
-		initializeTDFile(this.tldrawData.tldrawDataFile);
-
 		console.log("Trigger custom event");
 
 		// when obsidian opens another file (fileB), the react component

@@ -6,14 +6,6 @@ import {debug, errorlog} from "../utils/Utils";
 import {defaultDocument} from "./defaultDocument";
 import * as util from "util";
 
-// not part of any react lifecycle
-let currentFile: TDFile | null = null;
-
-export function initializeTDFile(initialTDfile: TDFile) {
-	// debug({where:"ObsTLdrawApp.initializeTDFile", initTDfile:initialTDfile.name});
-	currentFile = initialTDfile;
-}
-
 /**
  * returns the current TDFile object. It contains the most current drawing.
  */
@@ -77,7 +69,7 @@ export default function ObsTLdrawApp(props: any) {
 		const currentDrawingDocument = rCurrentDoc.current;
 
 		const drawingDocFromTldrawSide: TDFile = {
-			...currentFile,
+			...tldrawDataFile,
 			document: currentDrawingDocument
 		} as TDFile;
 
