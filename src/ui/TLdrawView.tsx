@@ -17,7 +17,7 @@ import {
 import {debug} from "../utils/Utils";
 import {TLdrawPluginAPI} from "../api/plugin-api";
 import {nanoid} from "nanoid";
-import ObsTLdrawApp, {initializeTDFile, triggerEvent} from "./ObsTLdrawApp";
+import ObsTLdrawApp, {triggerEvent} from "./ObsTLdrawApp";
 
 
 /**

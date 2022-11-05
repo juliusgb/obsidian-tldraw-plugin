@@ -1,5 +1,15 @@
 # Obsidian Tldraw Plugin Changelog
 
+## 0.1.1
+
+### New
+
+When a diagram is already open,
+opening another diagram in the same pane displays the new diagram:
+https://github.com/juliusgb/obsidian-tldraw-plugin/issues/23
+
+![OpenNewFileOnTopExistingOneWorks](https://user-images.githubusercontent.com/85777/198817330-e9fbb6b0-8864-4e91-8a67-447ccee75ee6.gif)
+
 ## 0.1.0
 
 ### New
