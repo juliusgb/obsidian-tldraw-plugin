@@ -110,7 +110,7 @@ export default function ObsTLdrawApp(props: any) {
 	const [isAnotherFileLoaded, setIsAnotherFileLoaded] = React.useState(false);
 	React.useEffect(() => {
 		// will run after React renders tldraw
-		function watchNewFileLoaded(evt) {
+		function watchNewFileLoaded(evt: CustomEvent<any>) {
 			const app = rTldrawApp.current;
 			const prevDocLoadedInTldraw = rCurrentDoc.current;
 
@@ -184,7 +184,7 @@ export default function ObsTLdrawApp(props: any) {
 	)
 }
 
-function triggerEvent(eventType, data) {
+function triggerEvent(eventType: string, data: any) {
 	const event = new CustomEvent(eventType, { detail: data });
 	document.dispatchEvent(event);
 }

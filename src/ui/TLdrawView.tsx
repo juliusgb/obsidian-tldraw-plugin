@@ -176,22 +176,6 @@ export default class TLdrawView extends TextFileView {
 		this.contentEl.empty();
 	}
 
-	// textfileview lifecycle methods
-	onLoadFile(file: TFile): Promise<void> {
-		debug({where:"view.onLoadFile()",mFile:file });
-		super.onLoadFile(file);
-	}
-
-	onUnloadFile(file: TFile): Promise<void> {
-		debug({where:"view.onUnloadFile()",mFile:file });
-		super.onUnloadFile(file);
-	}
-
-	onOpen(): Promise<void> {
-		debug({where:"view.onOpen()" });
-		super.onOpen();
-	}
-
 	/**
 	 *
 	 * @param justloaded - a flag to trigger zoom to fit after the drawing has been loaded
