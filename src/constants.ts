@@ -6,6 +6,10 @@ export const VIEW_TYPE_TLDRAW = "tldraw-editor";
 export const VIEW_TYPE_TLDRAW_EMBED = "tldraw-embed-view";
 
 export const CREATE_NEW = "New Tldraw drawing";
+export const FILENAME_DESC =
+	"<p>Date and time format is from <a" +
+	" href='https://momentjs.com/docs/#/displaying/format/'>" +
+	"moment js</a></p>";
 
 // TODO: use non-deprecated option: https://developer.mozilla.org/en-US/docs/web/api/navigator/platform#browser_compatibility
 export const isDarwin = /Mac|iPod|iPhone|iPad/.test(window.navigator.platform);
