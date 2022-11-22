@@ -34,3 +34,9 @@ I appreciate any feedback that you're able to give.
 Please use the [GitHub issue tracker](https://github.com/juliusgb/obsidian-tldraw-plugin/issues/new) to report bugs, request features,
 or suggest improvements, or message me over on Discord (juliusg#0919).
 
+## Attribution and Credits
+
+This was inspired by:
+- the [Obsidian Excalidraw Plugin](https://github.com/zsviczian/obsidian-excalidraw-plugin)
+- [tldraw](https://github.com/tldraw/tldraw)
+
