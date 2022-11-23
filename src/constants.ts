@@ -13,3 +13,9 @@ export const CTRL_OR_CMD = isDarwin ? "metaKey" : "ctrlKey";
 
 // use icons from https://lucide.dev/
 export const SAVE_DISK_ICON = "save"
+
+export const FILENAME_DESC =
+	"<p>Date and time format is from <a" +
+	" href='https://momentjs.com/docs/#/displaying/format/'>" +
+	"moment js</a></p>";
+export const FILENAME_SAMPLE = "Filename for a new drawing is: ";

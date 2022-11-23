@@ -4,6 +4,7 @@ import {
 } from 'obsidian';
 
 import {
+	CREATE_NEW,
 	CTRL_OR_CMD,
 	ICON_NAME, TLDRAW_ICON,
 	VIEW_TYPE_TLDRAW, VIEW_TYPE_TLDRAW_EMBED,
@@ -68,7 +69,7 @@ export default class TldrawPlugin extends Plugin {
 		// TODO: handle i18n (internationalization and localization)
 
 		// This creates an icon in the left ribbon.
-		this.addRibbonIcon(TLDRAW_ICON, 'New Tldraw drawing', (evt: MouseEvent) => {
+		this.addRibbonIcon(TLDRAW_ICON, CREATE_NEW, (evt: MouseEvent) => {
 
 			// TODO: check if really need to pass 'new-pane' or 'active-pane'
 			this.tldrawPluginApi.createAndOpenDrawing(evt[CTRL_OR_CMD]?"new-pane":"active-pane")
