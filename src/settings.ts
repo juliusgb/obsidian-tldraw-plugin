@@ -5,7 +5,8 @@ import {
 } from 'obsidian';
 
 import type TldrawPlugin from "./main";
-import {FILENAME_DESC} from "./constants";
+import {FILENAME_DESC, FILENAME_SAMPLE} from "./constants";
+import {getDrawingFilename} from "./utils/FileUtils";
 
 export interface TldrawSettings {
 	mySetting: string;
@@ -60,6 +61,13 @@ export class TldrawSettingTab extends PluginSettingTab {
 			el.innerHTML = FILENAME_DESC;
 		});
 
+		const getFilenameSample = () => {
+			return `${ FILENAME_SAMPLE }<i>${ getDrawingFilename(this.plugin.settings) }</i>`;
+		};
+
+		const filenameEl = containerEl.createEl("p", { text: "" });
+		filenameEl.innerHTML = getFilenameSample();
+
 		new Setting(containerEl)
 			.setName("Filename prefix") // TODO: i18n
 			.setDesc("First part of filename")
@@ -67,6 +75,7 @@ export class TldrawSettingTab extends PluginSettingTab {
 				.setValue(this.plugin.settings.drawingFilenamePrefix)
 				.onChange(async (value) => {
 					this.plugin.settings.drawingFilenamePrefix = value;
+					filenameEl.innerHTML = getFilenameSample();
 					await this.plugin.saveSettings();
 				})
 			);
@@ -78,6 +87,7 @@ export class TldrawSettingTab extends PluginSettingTab {
 				.setValue(this.plugin.settings.drawingFilenameDateTime)
 				.onChange(async  (value) => {
 					this.plugin.settings.drawingFilenameDateTime = value;
+					filenameEl.innerHTML = getFilenameSample();
 					await this.plugin.saveSettings();
 				})
 			);
