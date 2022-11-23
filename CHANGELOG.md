@@ -1,5 +1,28 @@
 # Obsidian Tldraw Plugin Changelog
 
+## 0.1.2
+
+### New
+
+Make filename properties (prefix and date format) changeable via the plugin's settings:
+https://github.com/juliusgb/obsidian-tldraw-plugin/issues/23
+
+- make the change
+- reload the plugin
+- create the drawing
+
+![Settings-Filename-uniqueness](https://user-images.githubusercontent.com/85777/203471639-aae7e5b5-80dc-4fd6-b2f3-423a2045fb3e.gif)
+
+
+if the date format of the filename doesn't guarantee that the next created filename is not unique, then a
+suffix of `_` followed by a number is added to the filename.
+
+- this number starts from `0` when Obsidian starts. It increases by `1` for every newly created file.
+- to reset this number to `0`, restart Obsidian.
+
+![Settings-Filename-Suffix-when-no-uniqueness](https://user-images.githubusercontent.com/85777/203471538-29768d69-d2d0-4773-8c87-16e6e3aa8085.gif)
+
+
 ## 0.1.1
 
 ### New
