@@ -142,7 +142,7 @@ export default class TLdrawView extends TextFileView {
 
 	// resets the view whenever Obsidian unloads the file.
 	clear() {
-		debug({where:"view.clear",fileLoaded:this.isLoaded});
+		// debug({where:"view.clear",fileLoaded:this.isLoaded});
 
 		// TODO: implement
 		// without this, following happens:
@@ -154,7 +154,7 @@ export default class TLdrawView extends TextFileView {
 	}
 
 	getViewType() {
-		debug({where:"view.getViewType()",fileLoaded:this.isLoaded});
+		// debug({where:"view.getViewType()",fileLoaded:this.isLoaded});
 
 		return VIEW_TYPE_TLDRAW_EMBED;
 	}
@@ -167,7 +167,7 @@ export default class TLdrawView extends TextFileView {
 	}
 
 	async onClose() {
-		debug({where:"view.onClose()",fileLoaded:this.isLoaded});
+		// debug({where:"view.onClose()",fileLoaded:this.isLoaded});
 
 		// React 18's way of removing a mounted React component from the DOM.
 		this.reactRoot.unmount();
@@ -197,7 +197,8 @@ export default class TLdrawView extends TextFileView {
 		// 1: div.view-content
 		console.log(this.containerEl); // prints the actual HTMLElement, i.e., <div>...</div>
 
-		debug({where: "TLdrawView.instantiateTldraw2", mtldrawData: this.tldrawData, mtldrawDataFile: this.tldrawData.tldrawDataFile });
+		// debug({where: "TLdrawView.instantiateTldraw2", mtldrawData: this.tldrawData, mtldrawDataFile:
+		// this.tldrawData.tldrawDataFile });
 
 		console.log("Trigger custom event");
 
