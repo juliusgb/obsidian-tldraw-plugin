@@ -1,9 +1,8 @@
-:zap: Development has just started. Definitely not stable, but a start. See <https://github.
-com/tldraw/tldraw/issues/919> :zap:
-
 # Obsidian Tldraw Plugin
 
 This plugin integrates [Tldraw](https://github.com/tldraw/tldraw) in [Obsidian](https://obsidian.md).
+
+Development started because of https://github.com/tldraw/tldraw/issues/919
 
 ## Setup
 
@@ -19,7 +18,7 @@ Prepare the required files:
 
 ## Test & Run
 - In your Obsidian Vault, go to Community Plugins, and enable the plugin
-- On the ribbon, click on the `dice` icon. When hovered over, it displays `New Tldrawing
+- On the ribbon, click on the `dice` icon. When hovered over, it displays `New Tldrawing`
 - Click on it. That will create a file with extension `.tldr` and will activate the `obsidian-tldraw-plugin`.
 
 ## Features
@@ -37,6 +36,6 @@ or suggest improvements, or message me over on Discord (juliusg#0919).
 ## Attribution and Credits
 
 This was inspired by:
-- the [Obsidian Excalidraw Plugin](https://github.com/zsviczian/obsidian-excalidraw-plugin)
+- [obsidian-excalidraw-plugin](https://github.com/zsviczian/obsidian-excalidraw-plugin)
 - [tldraw](https://github.com/tldraw/tldraw)
 
