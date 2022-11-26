@@ -1,5 +1,15 @@
 # Obsidian Tldraw Plugin Changelog
 
+## 0.1.3
+
+### Improvements
+
+The tldraw `Styles` pop-up is now visible:
+https://github.com/juliusgb/obsidian-tldraw-plugin/issues/39
+
+![SpaceForStylesPopup](https://user-images.githubusercontent.com/85777/204081610-37b9213c-4b7b-4638-9d17-cdffe19c6062.gif)
+
+
 ## 0.1.2
 
 ### New
