@@ -18,9 +18,16 @@ html,
 	height: 100%; /* keeps the gray background */
 }
 
+/* TODO: remove h1 element and css after tests */
+.tldrawApp > h1 {
+	margin: 0.30em;
+}
+
 .tldraw-wrapper {
 	position: relative;
-	height: 78%;
-	margin: 50px;
-	overflow: hidden;
+	/* keep 20% of .tldrawApp.width for the styles pop-up*/
+	max-width: 80%;
+	min-height: 85%;
+	margin-right: 5px; /* affects room on the right*/
+	margin-left: 5px;
 }
