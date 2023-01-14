@@ -4,13 +4,20 @@ This plugin integrates [Tldraw](https://github.com/tldraw/tldraw) in [Obsidian](
 
 Development started because of https://github.com/tldraw/tldraw/issues/919
 
-## Setup
+## Installation
 
 Since development has just started, this plugin is not yet registered as a community plugin for downloading within Obisidian.
 
+There are 2 ways to install this plugin:
+
+1. through the manual steps below or
+2. through BRAT (Beta Reviewer's Auto-update Tool) at https://github.com/TfTHacker/obsidian42-brat
+
+### Manual process
+
 Prepare the required files:
 
-- Naviate to the `releases` tab <https://github.com/juliusgb/obsidian-tldraw-plugin/releases>
+- Navigate to the `releases` tab <https://github.com/juliusgb/obsidian-tldraw-plugin/releases>
 - Download the `obsidian-tldraw-plugin-<version-number>`
 - Open your preferred zip tool, navigate to `obsidian-tldraw-plugin` and extract it into
 	`/path/to/ObsidianVault/plugins/`
