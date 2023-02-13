@@ -171,7 +171,6 @@ export default function ObsTLdrawApp(props: any) {
 
 	return (
 		<div className="tldrawApp">
-			<h1>TLdraw Example</h1>
 			<div className="tldraw-wrapper">
 				<Tldraw
 					onMount={handleMount}
