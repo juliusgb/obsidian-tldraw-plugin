@@ -38,7 +38,7 @@ See [CHANGELOG](./CHANGELOG.md) for details.
 
 I appreciate any feedback that you're able to give.
 Please use the [GitHub issue tracker](https://github.com/juliusgb/obsidian-tldraw-plugin/issues/new) to report bugs, request features,
-or suggest improvements, or message me over on Discord (juliusg#0919).
+or suggest improvements, or email me hello(at)juliusgamanyi.com
 
 ## Attribution and Credits
 

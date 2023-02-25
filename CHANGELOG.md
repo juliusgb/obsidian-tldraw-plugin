@@ -1,5 +1,12 @@
 # Obsidian Tldraw Plugin Changelog
 
+## 0.1.4
+
+### Improvements
+
+Replaced the dice logo with the tldraw logo on the ribbon:
+https://github.com/juliusgb/obsidian-tldraw-plugin/issues/29
+
 ## 0.1.3
 
 ### Improvements
