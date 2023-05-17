@@ -38,6 +38,13 @@ esbuild.build({
 	logLevel: "info",
 	sourcemap: prod ? false : 'inline',
 	treeShaking: true,
-	loader: { '.js': 'jsx' },
+	loader: {
+		'.js': 'jsx',
+		'.woff2': 'dataurl',
+		'.woff': 'dataurl',
+		'.svg': 'file',
+		'.png': 'file',
+		'.json': 'file'
+	},
 	outfile: 'main.js',
 }).catch(() => process.exit(1));
