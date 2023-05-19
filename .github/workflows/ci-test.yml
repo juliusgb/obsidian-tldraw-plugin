@@ -28,7 +28,7 @@ jobs:
           cp main.js manifest.json styles.css ${{ env.PLUGIN_NAME }}
           zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
           ls
-					tag_name=$(git tag --sort version:refname | tail -n 1)
+          tag_name=$(git tag --sort version:refname | tail -n 1)
           echo "name=$tag_name" >> "$GITHUB_ENV"
 
       - name: test Upload zip file
