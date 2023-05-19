@@ -31,6 +31,6 @@ jobs:
 					tag_name=$(git tag --sort version:refname | tail -n 1)
           echo "name=$tag_name" >> "$GITHUB_ENV"
 
-			- name: test Upload zip file
-				run: |
-					echo "release-zip-name=${{ env.PLUGIN_NAME }}-${{ steps.build.outputs.tag_name }}.zip"
+      - name: test Upload zip file
+        run: |
+          echo "release-zip-name=${{ env.PLUGIN_NAME }}-${{ steps.build.outputs.tag_name }}.zip"
