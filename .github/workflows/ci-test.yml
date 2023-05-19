@@ -1,9 +1,9 @@
-name: Release Obsidian plugin
+name: ci test
 
 on:
   push:
-    branches-ignore:
-			- "main"
+    branches:
+      - 'replace-output'
 
 env:
   PLUGIN_NAME: obsidian-tldraw-plugin
