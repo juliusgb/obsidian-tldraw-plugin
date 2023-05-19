@@ -12,3 +12,7 @@ indent_size = tab_width
 trim_trailing_whitespace = true
 # A file must end with an empty line - this is good for version control systems
 insert_final_newline = true
+
+[*.yml,yaml]
+indent_style = space
+indent_size = 2
