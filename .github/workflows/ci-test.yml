@@ -3,7 +3,7 @@ name: ci test
 on:
   push:
     branches:
-      - 'replace-output'
+      - 'replace-setoutput'
 
 env:
   PLUGIN_NAME: obsidian-tldraw-plugin
