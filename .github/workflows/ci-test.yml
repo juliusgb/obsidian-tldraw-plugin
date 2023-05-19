@@ -29,8 +29,8 @@ jobs:
           zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
           ls
           echo "test"
-          tag_name=$(git tag --sort version:refname | tail -n 1)
-          echo "name=$tag_name" >> "$GITHUB_ENV"
+          git_tag=$(git tag --sort version:refname | tail -n 1)
+          echo "tag_name=$git_tag" >> "$GITHUB_ENV"
 
       - name: test Upload zip file
         run: |
