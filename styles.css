@@ -16,6 +16,7 @@ html,
 	font-family: sans-serif;
 	text-align: center;
 	height: 100%; /* keeps the gray background */
+	width: 100%;
 }
 
 /* TODO: remove h1 element and css after tests */
@@ -25,9 +26,11 @@ html,
 
 .tldraw-wrapper {
 	position: relative;
-	/* keep 20% of .tldrawApp.width for the styles pop-up*/
-	max-width: 80%;
-	min-height: 85%;
+	height: 100%;
 	margin-right: 5px; /* affects room on the right*/
 	margin-left: 5px;
+}
+
+[data-radix-popper-content-wrapper]:has(#TD-StylesMenu) {
+	position: absolute !important;
 }
