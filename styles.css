@@ -31,6 +31,6 @@ html,
 	margin-left: 5px;
 }
 
-[data-radix-popper-content-wrapper]:has(#TD-StylesMenu) {
+[data-radix-popper-content-wrapper]:has(#TD-StylesMenu, #TD-ContextMenu, #TD-Menu) {
 	position: absolute !important;
 }
