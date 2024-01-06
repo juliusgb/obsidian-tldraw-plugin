@@ -1,5 +1,18 @@
 # Obsidian Tldraw Plugin Changelog
 
+## 0.1.5
+
+### Improvements
+
+Fixes the following:
+* Make styles pop-up accessible: https://github.com/juliusgb/obsidian-tldraw-plugin/issues/62
+* Resize tldraw when obsidian window resized: https://github.com/juliusgb/obsidian-tldraw-plugin/issues/54
+* Make tldraw work on whole note: https://github.com/juliusgb/obsidian-tldraw-plugin/issues/51
+
+### New Contributors
+
+* @CobyPear made their first contribution in https://github.com/juliusgb/obsidian-tldraw-plugin/pull/64
+
 ## 0.1.4
 
 ### Improvements
