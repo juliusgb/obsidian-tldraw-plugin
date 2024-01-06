@@ -1,9 +1,6 @@
 name: Release Obsidian plugin
 
 on:
-  push:
-    branches:
-      - '*'
     tags:
       - "*"
 
@@ -11,27 +8,12 @@ env:
   PLUGIN_NAME: obsidian-tldraw-plugin
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "16.x"
-      - name: Build
-        id: build
-        run: |
-          npm install
-          npm run build
-
   build:
-    if: false
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
