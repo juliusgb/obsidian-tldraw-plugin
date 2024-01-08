@@ -39,6 +39,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
+          token: ${{ secrets.PLUGIN_RELEASE_TOKEN }}
           files: |
             main.js
             manifest.json
